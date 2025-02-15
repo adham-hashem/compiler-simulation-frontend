@@ -1,0 +1,13 @@
+:root {
+    --main-color: #706CEE;
+    /* --main-color: #6E7EE8; */
+}
+
+.nextButton {
+    background-color: var(--main-color);
+}
+
+.nextButton:hover {
+    background-color: white;
+    color: var(--main-color);
+}

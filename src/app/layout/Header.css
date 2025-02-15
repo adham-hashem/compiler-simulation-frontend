@@ -1,0 +1,7 @@
+@import "../../features/css/style.css";
+
+#contactButton:hover {
+    background-color: var(--main-color);
+    border: 1px solid var(--main-color);
+    color: white; /* or black ?? */
+}

@@ -1,0 +1,1 @@
+HAMSY Compiler is an AI-powered code optimization and compilation simulation tool. It enhances code efficiency while visualizing memory and compilation stages like AST, parse trees, and IR generation.

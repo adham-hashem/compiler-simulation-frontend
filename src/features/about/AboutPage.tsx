@@ -1,74 +1,140 @@
-import { Box, Typography } from "@mui/material"
-import Header from "../../app/layout/Header"
+import React, { useEffect, useRef, useState } from "react";
+import Header from "../../app/layout/Header";
+import Footer from "../../app/layout/Footer";
+import ScrollButtons from "../scrollButtons/ScrollButtons"; // Adjust path as needed
+import "../../features/css/style.css"; // Ensure this includes main-background-color
 
-const About = () => {
+const AboutPage = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerHeight, setContainerHeight] = useState(0);
 
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-    return (
-      <>
-        <Header />
-        <Box sx={{ p: 4 }}>
-          <Typography variant="h3" gutterBottom>
-            About Us
-          </Typography>
-          <Typography variant="h6" gutterBottom>
-            Our Mission
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            At <strong>Note Master</strong>, we believe in simplifying the way students and professionals manage their notes. 
-            Our mission is to create a seamless and collaborative platform that empowers users to store, organize, and share their subject notes effortlessly. 
-            We aim to foster a community of learners who can easily access and build upon their knowledge, ensuring that no idea is ever lost.
-          </Typography>
-          
-          <Typography variant="h6" gutterBottom sx={{ mt: 4 }}>
-            What We Offer
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            Our platform provides a range of powerful features designed to make note-taking and organization efficient:
-          </Typography>
-          <ul>
+  // Measure container height on mount and resize
+  const updateHeight = () => {
+    if (containerRef.current) {
+      const height = containerRef.current.scrollHeight;
+      setContainerHeight(height);
+      console.log("Updated Container Height:", height); // Debug height
+    }
+  };
+
+  useEffect(() => {
+    updateHeight();
+    window.addEventListener("resize", updateHeight);
+    return () => window.removeEventListener("resize", updateHeight);
+  }, []);
+
+  return (
+    <>
+      <Header />
+      <div
+        ref={containerRef}
+        className="container-fluid text-white main-background-color px-5 py-4"
+        style={{ minHeight: "100vh" }}
+      >
+        <section className="mb-5">
+          <h2 className="mb-3" style={{ fontSize: "2rem", fontWeight: "bold" }}>
+            - Project Title
+          </h2>
+          <p style={{ fontSize: "1.2rem" }}>
+            <strong>Compiler Simulation with AI Optimization and Memory Visualization</strong>
+          </p>
+        </section>
+
+        <section className="mb-5">
+          <h2 className="mb-3" style={{ fontSize: "2rem", fontWeight: "bold" }}>
+            - Project Overview
+          </h2>
+          <p style={{ lineHeight: "1.6" }}>
+            HAMSY Compiler aims to revolutionize the way C++ code is optimized and analyzed by utilizing neural networks to improve
+            performance and reduce unnecessary computations. Unlike traditional compilers, which focus solely on translating code
+            into machine language, HAMSY introduces AI-driven optimizations while offering detailed insights into compilation stages:
+          </p>
+          <ul className="list-unstyled ms-4" style={{ lineHeight: "1.8" }}>
             <li>
-              <Typography variant="body1">
-                <strong>Effortless Organization:</strong> Easily categorize your notes by subject, making it simple to find exactly what you're looking for.
-              </Typography>
+              <strong>Lexical Analysis:</strong> Tokenizing the source code and generating a symbol table.
             </li>
             <li>
-              <Typography variant="body1">
-                <strong>Cloud Storage:</strong> All your notes are securely stored in the cloud, ensuring you never lose important information and can access it anywhere, anytime.
-              </Typography>
+              <strong>Syntax Analysis:</strong> Constructing a parse tree and validating syntax structure.
             </li>
             <li>
-              <Typography variant="body1">
-                <strong>Track Your Progress:</strong> Stay on top of your study or work goals by tracking what you’ve covered and what still needs attention.
-              </Typography>
+              <strong>Semantic Analysis:</strong> Generating an Abstract Syntax Tree (AST) and performing type checking.
             </li>
-            {/* <li>
-              <Typography variant="body1">
-                <strong>Intuitive Search:</strong> Use our powerful search tools to filter notes by date, subject, or custom tags to quickly retrieve the information you need.
-              </Typography>
-            </li> */}
+            <li>
+              <strong>Intermediate Representation (IR) Generation:</strong> Transforming the AST into an intermediate form for further optimization.
+            </li>
+            <li>
+              <strong>Optimization:</strong> Enhancing the efficiency of the IR before instruction selection.
+            </li>
+            <li>
+              <strong>Instruction Selection & Scheduling:</strong> Mapping optimized IR to assembly instructions and scheduling execution.
+            </li>
+            <li>
+              <strong>Register Allocation:</strong> Managing hardware resources effectively for execution.
+            </li>
           </ul>
-          
-          <Typography variant="h6" gutterBottom sx={{ mt: 4 }}>
-            Our Story
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            <strong>Note Master</strong> was founded with the goal of addressing a common challenge faced by students and professionals alike — managing a growing collection of subject notes. 
-            Our team, made up of experienced educators and developers, saw a need for a platform that stores notes, creativity, and organization. 
-            By combining cutting-edge technology with an intuitive user experience, we have built a platform that helps users make the most out of their knowledge and stay organized in today’s fast-paced world.
-          </Typography>
-          
-          <Typography variant="h6" gutterBottom sx={{ mt: 4 }}>
-            Join Us Today
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            Whether you're a student, professional, or lifelong learner, <strong>Note Master</strong> is here to help you succeed. 
-            Sign up today and start organizing your notes in a smarter, more efficient way.
-          </Typography>
-        </Box>
-      </>
-      );
-}
+        </section>
 
+        <section className="mb-5">
+          <h2 className="mb-3" style={{ fontSize: "2rem", fontWeight: "bold" }}>
+            - Key Features
+          </h2>
+          <ul className="list-unstyled ms-4" style={{ lineHeight: "1.8" }}>
+            <li>AI-Based Code Optimization</li>
+            <li>Compilation Simulation</li>
+            <li>Memory Analysis & Visualization</li>
+            <li>OCR-Based Code Extraction</li>
+            <li>Multi-Platform Support (Web & Mobile)</li>
+            <li>Advanced Security Features</li>
+          </ul>
+        </section>
 
-export default About;
+        <section className="mb-5">
+          <h2 className="mb-3" style={{ fontSize: "2rem", fontWeight: "bold" }}>
+            - Objective & Impact
+          </h2>
+          <p style={{ lineHeight: "1.6" }}>
+            The primary goal of HAMSY Compiler is to assist developers, students, and researchers in understanding and optimizing C++
+            code while visualizing the intricate steps of the compilation process. By leveraging AI models developed from scratch,
+            this project eliminates the dependency on third-party APIs and provides a unique learning platform for programming enthusiasts.
+          </p>
+        </section>
+
+        <section className="mb-5">
+          <h2 className="mb-3" style={{ fontSize: "2rem", fontWeight: "bold" }}>
+            - Technology Stack
+          </h2>
+          <ul className="list-unstyled ms-4" style={{ lineHeight: "1.8" }}>
+            <li>
+              <strong>Frontend:</strong> React (for the web interface), Flutter (for mobile and desktop applications)
+            </li>
+            <li>
+              <strong>Backend:</strong> .NET Core (for API services)
+            </li>
+            <li>
+              <strong>AI Models:</strong> Neural networks for code optimization and OCR
+            </li>
+          </ul>
+        </section>
+
+        <section className="mb-5">
+          <p style={{ lineHeight: "1.6", fontStyle: "italic" }}>
+            HAMSY Compiler is not just a tool for code compilation but a groundbreaking innovation that merges artificial intelligence
+            with traditional compiler methodologies. By providing AI-powered optimizations and visual insights, it paves the way for a
+            smarter and more efficient coding experience.
+          </p>
+        </section>
+
+        {/* Add Scroll Buttons */}
+        <ScrollButtons containerHeight={containerHeight} />
+      </div>
+      <Footer />
+    </>
+  );
+};
+
+export default AboutPage;

@@ -1,0 +1,163 @@
+.ir-opt-container {
+    min-height: 100vh;
+    padding: 20px;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Split Container (Desktop) */
+  .split-container {
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh - 140px); /* Matches SyntaxAnalysis */
+    position: relative;
+    width: 100%;
+    margin: 0 auto 10px auto;
+  }
+  
+  .ir-section,
+  .opt-ir-section {
+    height: 100%;
+  }
+  
+  .ir-content,
+  .opt-ir-content {
+    background-color: #222;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .ir-wrapper,
+  .opt-ir-wrapper {
+    flex: 1; /* Expand to fill available space */
+    overflow-y: auto;
+    overflow-x: auto;
+    width: 100%;
+    background-color: #000000;
+    border: 1px solid #282828;
+    padding: 10px; /* Add some padding inside the wrapper */
+  }
+  
+  .ir-wrapper {
+    border-radius: 10px; /* Full rounding for left section */
+  }
+  
+  .opt-ir-wrapper {
+    border-top-left-radius: 10px; /* Top-left corner */
+    border-bottom-left-radius: 10px; /* Bottom-left corner */
+    border-top-right-radius: 0; /* Ensure top-right is square */
+    border-bottom-right-radius: 0; /* Ensure bottom-right is square */
+  }
+  
+  .drag-handle {
+    width: 10px;
+    background-color: #444;
+    cursor: col-resize;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 10;
+    user-select: none;
+    transform: translateX(-50%);
+  }
+  
+  .text-warning {
+    color: #ff9900;
+    text-align: center;
+    margin: 10px 0;
+  }
+  
+  /* Arrow Buttons */
+  .arrow-button {
+    background-color: #706CEE; /* Blue background matching LexicalAnalysis */
+    border-radius: 50%; /* Circular buttons */
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .arrow-button svg {
+    width: 24px;
+    height: 24px;
+    stroke: #fff; /* White arrow */
+    transition: stroke 0.3s ease;
+  }
+  
+  .arrow-button:hover {
+    background-color: #5954ED; /* Darker blue on hover */
+    transform: scale(1.1);
+  }
+  
+  .arrow-button:hover svg {
+    stroke: #fff; /* Keep white on hover */
+  }
+  
+  .arrow-button:focus {
+    outline: 2px solid #5954ED; /* Focus ring for accessibility */
+    outline-offset: 2px;
+  }
+  
+  /* Errors Section */
+  .errors-section {
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  /* Mobile Layout (below 768px) */
+  @media (max-width: 768px) {
+    .split-container {
+      flex-direction: column;
+      height: auto;
+      width: 100%;
+      margin-bottom: 7px;
+    }
+  
+    .ir-section,
+    .opt-ir-section {
+      width: 100% !important;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+  
+    .ir-content,
+    .opt-ir-content {
+      width: 100%;
+    }
+  
+    .ir-wrapper,
+    .opt-ir-wrapper {
+      height: 400px; /* Fixed height for mobile */
+      width: 100%;
+      overflow-y: auto; /* Explicitly enable vertical scroll */
+      overflow-x: auto; /* Explicitly enable horizontal scroll */
+      flex: none; /* Prevent flex: 1 from overriding height */
+    }
+  
+    .drag-handle {
+      display: none;
+    }
+  
+    .errors-section {
+      margin-top: 8px;
+    }
+  
+    .arrow-button {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .arrow-button svg {
+      width: 20px;
+      height: 20px;
+    }
+  }

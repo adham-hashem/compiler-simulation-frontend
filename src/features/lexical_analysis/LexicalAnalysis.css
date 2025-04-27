@@ -1,0 +1,141 @@
+.lexical-container {
+  min-height: 100vh;
+  padding: 20px;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Split Container (Desktop) */
+.split-container {
+  display: flex;
+  flex-direction: row;
+  height: 65vh;
+  position: relative;
+  width: 100%;
+}
+
+.source-section,
+.tokens-section {
+  height: 100%;
+}
+
+.source-content,
+.tokens-content {
+  background-color: #222;
+  height: 100%;
+  width: 100%;
+}
+
+.source-textarea {
+  height: calc(100% - 40px); /* Adjust for h2 height */
+  font-family: monospace;
+  background-color: #282828 !important; /* Match original, override Bootstrap */
+  border: none !important; /* Match original */
+  resize: none;
+  width: 100%;
+  color: white; /* Ensure text remains visible */
+}
+
+.tokens-table-wrapper {
+  height: calc(100% - 40px); /* Adjust for h2 height */
+  overflow-y: auto;
+  width: 100%;
+}
+
+.tokens-table {
+  background: #1A1A1A;
+  border-radius: 10px;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.drag-handle {
+  width: 10px;
+  background-color: #444;
+  cursor: col-resize;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  user-select: none;
+}
+
+/* Arrow Buttons */
+.arrow-button {
+  background-color: #706CEE; /* Blue background matching theme */
+  border-radius: 50%; /* Circular buttons */
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.arrow-button svg {
+  width: 24px;
+  height: 24px;
+  stroke: #fff; /* White arrow */
+  transition: stroke 0.3s ease;
+}
+
+.arrow-button:hover {
+  background-color: #5954ed; /* Darker blue on hover */
+  transform: scale(1.1);
+}
+
+.arrow-button:hover svg {
+  stroke: #fff; /* Keep white on hover */
+}
+
+.arrow-button:focus {
+  outline: 2px solid #5954ed; /* Focus ring for accessibility */
+  outline-offset: 2px;
+}
+
+/* Mobile Layout (below 768px) */
+@media (max-width: 768px) {
+  .split-container {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+  }
+
+  .source-section,
+  .tokens-section {
+    width: 100% !important; /* Override inline width */
+    padding: 0;
+    margin-bottom: 20px;
+  }
+
+  .source-content,
+  .tokens-content {
+    width: 100%;
+  }
+
+  .source-textarea,
+  .tokens-table-wrapper {
+    height: 300px; /* Fixed height for mobile */
+    width: 100%;
+  }
+
+  .drag-handle {
+    display: none;
+  }
+
+  .errors-div {
+    margin-top: 0px !important;
+  }
+
+  .arrow-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .arrow-button svg {
+    width: 20px;
+    height: 20px;
+  }
+}

@@ -1,0 +1,67 @@
+/* InstructionScheduling.css */
+
+.instr-sched-container {
+  min-height: 100vh;
+  padding: 20px;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.text-warning {
+  color: #ff9900;
+  text-align: center;
+  margin: 10px 0;
+}
+
+/* Arrow Buttons */
+.arrow-button {
+  background-color: #706CEE; /* Blue background matching theme */
+  border-radius: 50%; /* Circular buttons */
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.arrow-button svg {
+  width: 24px;
+  height: 24px;
+  stroke: #fff; /* White arrow */
+  transition: stroke 0.3s ease;
+}
+
+.arrow-button:hover {
+  background-color: #5954ed; /* Darker blue on hover */
+  transform: scale(1.1);
+}
+
+.arrow-button:hover svg {
+  stroke: #fff; /* Keep white on hover */
+}
+
+.arrow-button:focus {
+  outline: 2px solid #5954ed; /* Focus ring for accessibility */
+  outline-offset: 2px;
+}
+
+/* Mobile Layout (below 768px) */
+@media (max-width: 768px) {
+  .instr-sched-container {
+    padding: 10px;
+  }
+
+  .arrow-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .arrow-button svg {
+    width: 20px;
+    height: 20px;
+  }
+}

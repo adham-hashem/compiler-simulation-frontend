@@ -1,13 +1,67 @@
+@import "../css/bootstrap.min.css";
+
 :root {
     --main-color: #706CEE;
     /* --main-color: #6E7EE8; */
+    --main-background-color: #1A1A1A;
+    --div-background-color: #282828;
+}
+
+.learn-more-button {
+    background-color: var(--main-color);
+    color: white;
+}
+
+.learn-more-button:hover {
+    background-color: white;
+    color: #706CEE;
+}
+
+.prevButton {
+    background-color: #282828;
+}
+
+.prevButton:hover {
+    background-color: white;
+    color: #282828;
 }
 
 .nextButton {
     background-color: var(--main-color);
+    color: white;
 }
 
 .nextButton:hover {
     background-color: white;
     color: var(--main-color);
 }
+
+.rounded-div {
+    border: 1px solid #282828;
+    border-radius: 5px;
+}
+
+.main-color {
+    color: #706CEE;
+}
+
+.main-color-background {
+    background-color: #706CEE;
+}
+
+.main-background-color {
+    background-color: #1A1A1A;
+}
+
+.div-background-color {
+    background-color: #282828;
+}
+
+.responsive-img {
+    width: 100%; /* Ensures full width within the column */
+    max-width: 500px; /* Limits the maximum size for better aesthetics */
+    height: auto; /* Keeps the aspect ratio */
+    border-radius: 10px; /* Smooth edges */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow */
+}
+

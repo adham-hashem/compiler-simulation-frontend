@@ -1,9 +1,254 @@
+/* SourceCode.css */
+
 @import "../css/style.css";
 
-.btn1:hover, .btn2:hover, .btn3:hover {
-    background-color: var(--main-color);
-    /* background-color: #FF0037; */
-    color: white;
-    border: 1px solid var(--main-color);
-    /* border: 1px solid #FF0037; */
+.source-code-container {
+  min-height: 100vh;
+  padding: 20px;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden; /* No horizontal scroll at container level */
+}
+
+/* Split Container (Desktop) */
+.split-container {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 230px) !important;
+  position: relative;
+  width: 100%;
+  margin: 0 auto 10px auto;
+  overflow-x: hidden; /* No horizontal scroll here */
+}
+
+.code-section,
+.grammar-section {
+  height: 100%;
+}
+
+.code-content,
+.grammar-content {
+  background-color: #222;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.code-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: auto; /* Allow horizontal scroll for code */
+  width: 100%;
+  background-color: #282828;
+  border: 1px solid #282828;
+  padding: 10px;
+  border-radius: 10px;
+  resize: none;
+  color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.code-wrapper:focus {
+  background-color: #282828;
+  color: #fff;
+  border: 1px solid #444;
+  outline: none;
+  box-shadow: 0 0 5px rgba(112, 108, 238, 0.5);
+}
+
+.code-wrapper.dragging {
+  border: 2px dashed #706CEE;
+  box-shadow: 0 0 10px rgba(112, 108, 238, 0.7);
+  background-color: #333;
+}
+
+.grammar-wrapper {
+  flex: 1;
+  overflow-y: auto; /* Vertical scroll */
+  overflow-x: auto; /* Horizontal scroll for grammar */
+  width: 100%;
+  background-color: #000000;
+  border: 1px solid #282828;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  white-space: pre; /* Prevent wrapping */
+}
+
+.upload-section {
+  padding: 10px 0;
+}
+
+.upload-icon {
+  cursor: pointer;
+  display: inline-block;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.upload-icon:hover {
+  background-color: rgba(112, 108, 238, 0.2);
+  box-shadow: 0 0 8px rgba(112, 108, 238, 0.5);
+}
+
+.upload-icon svg {
+  stroke: #fff;
+}
+
+.upload-icon:hover svg {
+  stroke: #706CEE;
+}
+
+.drag-handle {
+  width: 10px;
+  background-color: #444;
+  cursor: col-resize;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  user-select: none;
+  transform: translateX(-50%);
+}
+
+.text-danger {
+  color: #ff4444;
+}
+
+/* Button Specific Adjustments */
+.upload-btn {
+  display: inline-block;
+}
+
+.optimize-btn,
+.simulate-btn,
+.memory-btn {
+  min-width: 160px;
+}
+
+/* Mobile Layout (below 768px) */
+@media (max-width: 768px) {
+  .split-container {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .code-section,
+  .grammar-section {
+    width: 100% !important;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .code-content,
+  .grammar-content {
+    width: 100%;
+    height: auto;
+    min-height: 450px;
+  }
+
+  .code-wrapper,
+  .grammar-wrapper {
+    height: 400px;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: auto; /* Keep horizontal scroll on mobile */
+    flex: none;
+  }
+
+  .drag-handle {
+    display: none;
+  }
+}
+
+/* Button Styles */
+.btn {
+  text-decoration: none; /* No underline by default */
+  transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease; /* Add transform transition */
+}
+
+/* Specific button styles */
+.btn.btn-outline-light {
+  color: #fff; /* Default text color */
+  border-color: #fff;
+  background-color: transparent;
+}
+
+.btn.nextButton {
+  color: #fff; /* Default text color */
+  background-color: #706cee; /* Match VisualizationPage hover color as default */
+  border: none;
+}
+
+/* Hover states */
+.btn.btn-outline-light:hover {
+  background-color: #706cee; /* Purple background like VisualizationPage */
+  color: #fff; /* White text on hover */
+  text-decoration: none; /* No underline */
+  transform: scale(1.05); /* Scale up like VisualizationPage */
+}
+
+.btn.nextButton:hover {
+  background-color: #8a86f5; /* Slightly lighter purple for contrast */
+  color: #fff; /* White text on hover */
+  text-decoration: none; /* No underline */
+  transform: scale(1.05); /* Scale up like VisualizationPage */
+}
+
+/* Ensure custom btn1, btn2, btn3 don’t override */
+.btn1, .btn2, .btn3 {
+  min-width: 160px; /* Match previous specific adjustments */
+}
+
+/* Mobile Layout (below 768px) */
+@media (max-width: 768px) {
+  .split-container {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .code-section,
+  .grammar-section {
+    width: 100% !important;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .code-content,
+  .grammar-content {
+    width: 100%;
+    height: auto;
+    min-height: 450px;
+  }
+
+  .code-wrapper,
+  .grammar-wrapper {
+    height: 400px;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: auto;
+    flex: none;
+  }
+
+  .drag-handle {
+    display: none;
+  }
+
+  /* Adjust button spacing on mobile */
+  .btn {
+    display: block;
+    margin: 10px auto; /* Center buttons vertically */
+  }
 }

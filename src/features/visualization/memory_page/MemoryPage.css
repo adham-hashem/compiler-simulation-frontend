@@ -1,0 +1,150 @@
+/* MemoryPage.css */
+
+.memory-container {
+  min-height: 100vh;
+  background-color: #1a1a1a; /* Match VisualizationPage dark theme */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.memory-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.memory-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.memory-header p {
+  font-size: 1.2rem;
+  color: #cccccc;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.memory-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.memory-item {
+  background-color: #282828;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #333333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.memory-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.memory-item h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.memory-item p {
+  font-size: 1rem;
+  color: #cccccc;
+  margin: 0;
+}
+
+.navigation {
+  margin-top: 40px;
+  text-align: center;
+}
+
+/* Arrow Button */
+.arrow-button {
+  background-color: #706CEE; /* Blue background matching theme */
+  border-radius: 50%; /* Circular buttons */
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.arrow-button svg {
+  width: 24px;
+  height: 24px;
+  stroke: #fff; /* White arrow */
+  transition: stroke 0.3s ease;
+}
+
+.arrow-button:hover {
+  background-color: #5954ed; /* Darker blue on hover */
+  transform: scale(1.1);
+}
+
+.arrow-button:hover svg {
+  stroke: #fff; /* Keep white on hover */
+}
+
+.arrow-button:focus {
+  outline: 2px solid #5954ed; /* Focus ring for accessibility */
+  outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .memory-container {
+    padding: 20px 10px;
+  }
+
+  .memory-header h1 {
+    font-size: 2rem;
+  }
+
+  .memory-header p {
+    font-size: 1rem;
+  }
+
+  .memory-item h2 {
+    font-size: 1.5rem;
+  }
+
+  .memory-item p {
+    font-size: 0.9rem;
+  }
+
+  .arrow-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .arrow-button svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .memory-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .memory-header p {
+    font-size: 0.9rem;
+  }
+
+  .memory-item h2 {
+    font-size: 1.3rem;
+  }
+
+  .memory-item p {
+    font-size: 0.85rem;
+  }
+}

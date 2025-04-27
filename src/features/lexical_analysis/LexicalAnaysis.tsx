@@ -1,157 +1,239 @@
-import { useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { useCompilation } from "../context/CompilationContext";
 import Header from "../../app/layout/Header";
-import "../../features/css/style.css"
+import Footer from "../../app/layout/Footer";
+import Notes from "../../features/notes/Notes";
+import Errors from "../errors/Errors";
+import "../../features/css/style.css";
 import "./LexicalAnalysis.css";
-
-interface Token {
-  type: string;
-  lexeme: string;
-  line: number;
-  column: number;
-}
+import ScrollButtons from "../scrollButtons/ScrollButtons";
+import { API_BASE_URL } from '../../config';
 
 const LexicalAnalysis: React.FC = () => {
-  const location = useLocation();
-  const [code, setCode] = useState<string>("");
-  const [tokens, setTokens] = useState<Token[]>([
-    { type: "INT_TYPE", lexeme: "int", line: 1, column: 0 },
-    { type: "IDENTIFIER", lexeme: "z", line: 1, column: 4 },
-    { type: "ASSIGN", lexeme: "=", line: 1, column: 6 },
-    { type: "INT", lexeme: "2", line: 1, column: 8 },
-    { type: "SEMI", lexeme: ";", line: 1, column: 9 }
-  ]);
+  const { code, setCode, tokens, setTokens } = useCompilation();
   const [errors, setErrors] = useState<string[]>([]);
+  const [notes, setNotes] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerHeight, setContainerHeight] = useState(0);
+  const [sourceWidth, setSourceWidth] = useState(60); // Initial width percentage
+  const dragRef = useRef<HTMLDivElement>(null);
 
+  // Scroll to top on mount
   useEffect(() => {
-    if (location.state?.code) {
-      setCode(location.state.code);
-      // analyzeCode(location.state.code);
-    }
-  }, [location]);
+    window.scrollTo(0, 0);
+  }, []);
 
-  // const analyzeCode = async (sourceCode: string) => {
-  //   setLoading(true);
-  //   setTokens([]);
-  //   setErrors([]);
+  // Measure container height on mount and resize
+  useEffect(() => {
+    const updateHeight = () => {
+      if (containerRef.current) {
+        setContainerHeight(containerRef.current.scrollHeight);
+      }
+    };
 
-  //   try {
-  //     const response = await fetch("/api/compilation/lexical-analysis", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({ SourceCode: sourceCode }),
-  //     });
+    updateHeight();
+    window.addEventListener("resize", updateHeight);
+    return () => window.removeEventListener("resize", updateHeight);
+  }, []);
 
-  //     if (!response.ok) throw new Error("Failed to fetch tokens");
+  // Fetch tokens from API
+  useEffect(() => {
+    const fetchTokens = async () => {
+      if (!code || tokens.length > 0) return;
+      setLoading(true);
+      setErrors([]);
+      setNotes([]);
 
-  //     const data = await response.json();
-  //     setTokens(data.tokens);
-  //     setErrors(data.errors || []);
-  //   } catch (error) {
-  //     console.error("Error analyzing code:", error);
-  //     setErrors(["Failed to analyze the code."]);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/compilation/lexical-analysis`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ SourceCode: code }),
+        });
+
+        if (!response.ok) throw new Error("Failed to fetch tokens");
+
+        const data = await response.json();
+        const fetchedTokens = data.tokens || [];
+        setTokens(fetchedTokens);
+        setErrors(data.errors || []);
+        console.log("Tokens Fetched and Stored:", fetchedTokens);
+      } catch (error) {
+        console.error("Error fetching tokens:", error);
+        setErrors([(error as Error).message || "Failed to fetch tokens. Please check your input."]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTokens();
+  }, [code, tokens, setTokens]);
+
+  // Drag handling
+  const startDragging = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    console.log("Drag started");
+
+    const handleMouseMove = (moveEvent: MouseEvent) => {
+      if (!containerRef.current) return;
+
+      const containerRect = containerRef.current.getBoundingClientRect();
+      const newWidth = ((moveEvent.clientX - containerRect.left) / containerRect.width) * 100;
+
+      console.log("Dragging - New Width:", newWidth);
+
+      if (newWidth >= 20 && newWidth <= 80) {
+        setSourceWidth(newWidth);
+      }
+    };
+
+    const stopDragging = () => {
+      console.log("Drag ended");
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", stopDragging);
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", stopDragging);
+  };
+
+  console.log(`${API_BASE_URL}`);
 
   return (
     <>
       <Header />
-      <div className="container-fluid text-white" style={{ backgroundColor: "black", minHeight: "100vh", padding: "20px" }}>
+      <div ref={containerRef} className="container-fluid text-white main-background-color lexical-container">
         <h2 className="mb-3 text-white text-center">Lexical Analysis</h2>
 
-        <div className="row">
+        <div className="split-container">
           {/* Source Code Section */}
-          <div className="col-md-7 mb-2">
-            <h2 className="mb-3 text-white">Source Code</h2>
-            <textarea
-              className="form-control p-3 bg-dark text-white"
-              rows={10}
-              style={{ minHeight: "300px", fontFamily: "monospace" }}
-              value={code}
-              readOnly
-            />
+          <div className="source-section" style={{ width: `${sourceWidth}%` }}>
+            <div className="p-3 rounded-div source-content">
+              <h2 className="mb-3 text-white">Source Code</h2>
+              <textarea
+                className="form-control p-3 text-white source-textarea"
+                value={code}
+                readOnly
+              />
+            </div>
           </div>
+
+          {/* Drag Handle */}
+          <div
+            ref={dragRef}
+            onMouseDown={startDragging}
+            className="drag-handle"
+            style={{ left: `${sourceWidth}%` }}
+          />
 
           {/* Tokens Section */}
-          <div className="col-md-5">
-            <h2 className="mb-3 text-white">List of Tokens</h2>
-            {loading ? (
-              <p className="text-warning">Analyzing...</p>
-            ) : (
-              <table className="table table-dark table-bordered">
-                <thead>
-                  <tr>
-                    <th>Lexeme</th>
-                    <th>Type</th>
-                    <th>Line</th>
-                    <th>Column</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {tokens.length > 0 ? (
-                    tokens.map((token, index) => (
-                      <tr key={index}>
-                        <td>{token.lexeme}</td>
-                        <td>{token.type}</td>
-                        <td>{token.line}</td>
-                        <td>{token.column}</td>
+          <div className="tokens-section" style={{ width: `${100 - sourceWidth}%` }}>
+            <div className="p-3 rounded-div tokens-content">
+              <h2 className="mb-3 text-white">Tokens</h2>
+              {loading ? (
+                <p className="text-warning">Analyzing...</p>
+              ) : tokens.length > 0 ? (
+                <div className="tokens-table-wrapper">
+                  <table className="table table-bordered tokens-table">
+                    <thead>
+                      <tr style={{ background: "#616161", color: "white" }}>
+                        <th style={{ borderTopLeftRadius: "10px" }}>Lexeme</th>
+                        <th>Type</th>
+                        <th>Line</th>
+                        <th style={{ borderTopRightRadius: "10px" }}>Column</th>
                       </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan={4} className="text-center text-warning">
-                        No tokens found
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            )}
-          </div>
-        </div>
-
-        {/* Errors Section */}
-        <div className="row mt-2">
-          <div className="col-md-12">
-            <h2 className="mb-3 text-white">Errors</h2>
-            {errors.length > 0 ? (
-              <ul className="list-group">
-                {errors.map((error, index) => (
-                  <li key={index} className="list-group-item list-group-item-danger">
-                    {error}
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="" style={{ color: "var(--main-color);" }}>No errors found</p>
-            )}
+                    </thead>
+                    <tbody>
+                      {tokens.map((token, index) => (
+                        <tr key={index}>
+                          <td>{token.lexeme ?? "N/A"}</td>
+                          <td>{token.type ?? "Unknown"}</td>
+                          <td>{token.line ?? "-"}</td>
+                          <td>{token.column ?? "-"}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <p className="text-warning">No tokens found</p>
+              )}
+            </div>
           </div>
         </div>
 
         {/* Buttons Section */}
         <div className="row mx-0 mt-3">
           <div className="col text-center">
-            <Link 
-            to="/source-code"
-            className="btn btn-outline-light py-2 mx-4 mb-2 px-5"
+            <Link
+              to="/source-code"
+              className="btn arrow-button prev-arrow mx-4 mb-2"
+              role="button"
+              aria-label="Navigate to Previous Page (Source Code)"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  window.location.href = '/source-code';
+                }
+              }}
             >
-              Previous
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
             </Link>
             <Link
               to="/syntax-analysis"
-              state={{ tokens }}
-              className="btn py-2 mx-4 mb-2 px-5 nextButton"
-              style={{ }}
+              className="btn arrow-button next-arrow mx-4 mb-2"
+              role="button"
+              aria-label="Navigate to Next Page (Syntax Analysis)"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  window.location.href = '/syntax-analysis';
+                }
+              }}
             >
-              Next
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
             </Link>
           </div>
         </div>
+
+        {/* Errors Section */}
+        <div className="mt-3 errors-div">
+          <Errors errors={errors} />
+        </div>
+
+        {/* Notes Section */}
+        <Notes notes={notes} />
+
+        {/* Add Scroll Buttons */}
+        <ScrollButtons containerHeight={containerHeight} />
       </div>
+      <Footer />
     </>
   );
 };

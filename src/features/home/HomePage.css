@@ -1,19 +1,4 @@
 @import "../css/style.css";
-
-body {
-    font-family: "Libre Baskerville", serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 30px;
-    background-color: #0c0f15;
-    overflow-x:hidden;
-    color: #ababab; }
-  
-  ::-webkit-scrollbar {
-      width: 10px;
-      background-color: #F5F5F5;
-    
-  }
   
   ::-webkit-scrollbar-thumb {
       background-color: var(--main-color);
@@ -40,13 +25,6 @@ body {
     -moz-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s; }
-  
-  h1, h2, h3,
-  h4, h5, h6 {
-    color: #1e2530;
-    font-family: "Open Sans", sans-serif;
-    margin: 0;
-    line-height: 1.3; }
   
   p {
     margin-bottom: 20px; }
@@ -597,3 +575,227 @@ body {
     
   }
   
+
+/* 
+--------------------------------------------------------  
+*/
+
+.main-content {
+  height: calc(100vh - 50px);
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 60%, rgba(112,108,238,1) 85%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.main-content-h1 {
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.main-content-h1-container {
+  border-right: 2px solid limegreen;
+  /* border-right: 2px solid #020024; */
+  width: fit-content;
+  animation: blinkCursor 0.8s infinite;
+}
+
+/* Cursor blinking effect */
+@keyframes blinkCursor {
+  50% {
+      border-color: transparent;
+  }
+}
+
+.main-content-p {
+  color: #fff;
+  margin: 20px 250px 30px 250px;
+}
+
+.main-content-button {
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 60%, rgba(112,108,238,1) 85%);
+  padding: 10px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-grad {background-image: linear-gradient(to right, #706CEE 0%, #4e4376  51%, #2b5876  100%)}
+.btn-grad {
+   margin-top: 10px;
+   padding: 10px 60px;
+   text-align: center;
+   text-transform: uppercase;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 10px #706CEE;
+   border-radius: 5px;
+   display: inline-block;
+ }
+
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+/* ---------------------------------------------------------------- */
+
+@import "../css/style.css";
+
+/* ... (keep existing scrollbar, selection, and helper styles unchanged) */
+
+/* Main Content */
+.main-content {
+  height: calc(100vh - 50px);
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 60%, rgba(112,108,238,1) 85%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.main-content-h1 {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 3.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  animation: fadeIn 1s ease-in;
+}
+
+.main-content-h1-container {
+  border-right: 2px solid limegreen;
+  width: fit-content;
+  animation: blinkCursor 0.8s infinite;
+}
+
+.main-content-p {
+  color: #fff;
+  margin: 20px 15% 40px; /* Adjusted for better responsiveness */
+  font-size: 1.2rem;
+  line-height: 1.6;
+  max-width: 800px;
+}
+
+/* Button Container */
+.button-container {
+  display: flex;
+  gap: 20px; /* Space between buttons */
+  justify-content: center;
+  flex-wrap: wrap; /* Wrap on smaller screens */
+}
+
+/* Visualizer Buttons */
+.visualizer-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.visualizer-btn {
+  display: inline-block;
+  padding: 12px 40px;
+  background-color: #222;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.visualizer-btn:hover {
+  background-color: #706cee;
+  color: #fff;
+  text-decoration: none;
+  transform: scale(1.05); /* Match VisualizationPage */
+  box-shadow: 0 0 20px rgba(112, 108, 238, 0.8);
+}
+
+/* Button Styles */
+.btn-grad {
+  background-image: linear-gradient(to right, #706CEE 0%, #4e4376 51%, #2b5876 100%);
+  padding: 12px 40px; /* Slightly larger padding */
+  text-align: center;
+  text-transform: uppercase;
+  transition: background-position 0.5s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 10px rgba(112, 108, 238, 0.5);
+  border-radius: 5px;
+  display: inline-block;
+  font-weight: 500;
+  text-decoration: none; /* No underline */
+}
+
+.btn-grad:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none; /* No underline on hover */
+  transform: scale(1.05); /* Match VisualizationPage transform */
+  box-shadow: 0 0 20px rgba(112, 108, 238, 0.8); /* Enhanced shadow on hover */
+}
+
+/* Learn More Button */
+.learn-more-button {
+  background-color: #706cee;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.learn-more-button:hover {
+  background-color: #8a86f5; /* Lighter purple */
+  color: #fff;
+  text-decoration: none;
+  transform: scale(1.05); /* Match VisualizationPage transform */
+}
+
+/* Animations */
+@keyframes blinkCursor {
+  50% {
+    border-color: transparent;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .main-content-h1 {
+    font-size: 2.5rem;
+  }
+  .main-content-p {
+    margin: 20px 10% 30px;
+    font-size: 1rem;
+  }
+  .button-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .btn-grad {
+    padding: 10px 30px;
+  }
+}

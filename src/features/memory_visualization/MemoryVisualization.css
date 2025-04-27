@@ -1,0 +1,125 @@
+/* MemoryVisualization.css */
+
+.mem-vis-container {
+  min-height: 100vh;
+  padding: 20px;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.step-navigation {
+  margin-bottom: 20px;
+}
+
+/* Split Container (Desktop) */
+.split-container {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 180px); /* Adjusted for step navigation */
+  position: relative;
+  width: 100%;
+  margin: 0 auto 10px auto;
+}
+
+.stack-section,
+.heap-section {
+  height: 100%;
+}
+
+.stack-content,
+.heap-content {
+  background-color: #222;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.stack-wrapper,
+.heap-wrapper {
+  flex: 1; /* Expand to fill available space */
+  overflow-y: auto;
+  overflow-x: auto;
+  width: 100%;
+  background-color: #000000;
+  border: 1px solid #282828;
+  padding: 10px; /* Add padding inside the wrapper */
+}
+
+.stack-wrapper {
+  border-radius: 10px; /* Full rounding for left section */
+}
+
+.heap-wrapper {
+  border-top-left-radius: 10px; /* Top-left corner */
+  border-bottom-left-radius: 10px; /* Bottom-left corner */
+  border-top-right-radius: 0; /* Ensure top-right is square */
+  border-bottom-right-radius: 0; /* Ensure bottom-right is square */
+}
+
+.drag-handle {
+  width: 10px;
+  background-color: #444;
+  cursor: col-resize;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  user-select: none;
+  transform: translateX(-50%);
+}
+
+.text-warning {
+  color: #ff9900;
+  text-align: center;
+  margin: 10px 0;
+}
+
+/* Errors Section */
+.errors-section {
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* Mobile Layout (below 768px) */
+@media (max-width: 768px) {
+  .split-container {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    margin-bottom: 7px;
+  }
+
+  .stack-section,
+  .heap-section {
+    width: 100% !important;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+
+  .stack-content,
+  .heap-content {
+    width: 100%;
+  }
+
+  .stack-wrapper,
+  .heap-wrapper {
+    height: 400px; /* Fixed height for mobile, matching previous components */
+    width: 100%;
+    overflow-y: auto; /* Explicitly enable vertical scroll */
+    overflow-x: auto; /* Explicitly enable horizontal scroll */
+    flex: none; /* Prevent flex: 1 from overriding height */
+  }
+
+  .drag-handle {
+    display: none;
+  }
+
+  .errors-section {
+    margin-top: 8px;
+  }
+}

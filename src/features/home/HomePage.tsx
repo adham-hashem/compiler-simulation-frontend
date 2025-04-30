@@ -104,7 +104,7 @@ const HomePage: React.FC = () => {
           <div className="main-background-color" style={{ height: "40px" }}></div>
 
           {/* Empowering Section */}
-          <div className="div-background-color mb-2 mx-5 rounded-div" style={{ padding: "80px 40px 40px 40px" }}>
+          <div className="div-background-color empowering-section mb-2 mx-5 rounded-div" style={{ padding: "80px 40px 40px 40px" }}>
             <div className="row">
               <div className="col-md-6 mb-5">
                 <h2 className="text-white mb-5">

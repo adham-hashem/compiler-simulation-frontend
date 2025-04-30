@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "../../features/css/style.css"
+import "./Header.css";
 
 function Header() {
     return (
@@ -26,7 +27,7 @@ function Header() {
                       </li>
                   </ul>
                   <form className="d-flex">
-                      <Link className="btn btn-outline-light p-2 mx-4 px-4" to="/contact">Contact Us</Link>
+                      <Link className="btn btn-outline-light p-2 mx-4 px-4 contact-us-button" to="/contact">Contact Us</Link>
                   </form>
               </div>
           </div>

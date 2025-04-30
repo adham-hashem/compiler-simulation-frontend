@@ -5,3 +5,10 @@
     border: 1px solid var(--main-color);
     color: white; /* or black ?? */
 }
+
+@media (max-width: 768px) {
+    .contact-us-button {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}

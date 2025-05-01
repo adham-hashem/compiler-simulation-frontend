@@ -52,8 +52,8 @@ return (
                     <Link to="" className="btn py-2 mb-2 px-5 nextButton">Send Message</Link>
                 </div>
             </form>
-            <Footer />
         </div>
+        <Footer />
     </>
 );
 };

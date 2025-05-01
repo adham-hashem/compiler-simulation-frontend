@@ -197,7 +197,7 @@ const MemoryVisualization: React.FC = () => {
           {/* Heap (Data Segment) Section */}
           <div className="heap-section" style={{ width: `calc(${100 - stackWidth}% - 5px)` }}>
             <div className="p-3 rounded-div heap-content">
-              <h3 className="text-white">Heap (Data Segment)</h3>
+              <h3 className="text-white">Heap</h3>
               <div className="heap-wrapper">
                 {loading ? (
                   <p className="text-warning">Fetching memory data...</p>

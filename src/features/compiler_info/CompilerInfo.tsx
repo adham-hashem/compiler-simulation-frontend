@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import './CompilerInfo.css';
 import 'particles.js/particles';
 import Header from '../../app/layout/Header';
+import Footer from '../../app/layout/Footer';
 
 const CompilerInfo: React.FC = () => {
   const particlesRef = useRef<HTMLDivElement>(null);
@@ -98,9 +99,9 @@ const CompilerInfo: React.FC = () => {
     <Header />
     <div className="compiler-container">
       <div id="particles-js" ref={particlesRef} className="particles-container"></div>
-      <div className="count-particles">
+      {/* <div className="count-particles">
         <span className="js-count-particles">--</span> particles
-      </div>
+      </div> */}
       <div className="compiler-content">
         <h1>What is a Compiler?</h1>
         <p>
@@ -124,6 +125,7 @@ const CompilerInfo: React.FC = () => {
         </p>
       </div>
     </div>
+    <Footer />
     </>
   );
 };

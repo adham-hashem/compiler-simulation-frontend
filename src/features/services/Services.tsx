@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Header from "../../app/layout/Header";
+import Footer from '../../app/layout/Footer';
 
 const Services = () => {
 
@@ -81,6 +82,7 @@ const Services = () => {
                     </div>
                 </div>
             </main>
+            <Footer />
         </>
     );
 };

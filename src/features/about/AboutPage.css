@@ -1,0 +1,32 @@
+.list-unstyled li {
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .list-unstyled li:hover {
+    transform: translateX(10px);
+    color: #706CEE;
+  }
+  
+  section h2 {
+    transition: color 0.3s ease;
+  }
+  
+  section h2:hover {
+    color: #706CEE;
+  }
+  
+  section p:not(:last-child) {
+    transition: opacity 0.3s ease;
+  }
+  
+  section p:hover {
+    opacity: 0.8;
+  }
+  
+  .fas, .fab {
+    transition: transform 0.3s ease;
+  }
+  
+  .fas:hover, .fab:hover {
+    transform: scale(1.2);
+  }

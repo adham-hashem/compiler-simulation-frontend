@@ -1,0 +1,73 @@
+.form-control {
+    border-radius: 0 0.25rem 0.25rem 0;
+    background-color: #333;
+    color: white;
+    border: 1px solid #706CEE;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .form-control:focus {
+    border-color: #706CEE;
+    box-shadow: 0 0 8px rgba(112, 108, 238, 0.5);
+    background-color: #333;
+    color: white;
+  }
+  
+  .input-group-text {
+    background-color: #282828;
+    border: 1px solid #706CEE;
+    color: #706CEE;
+  }
+  
+  .nextButton {
+    background: linear-gradient(45deg, transparent 50%, #706CEE 50%);
+    background-size: 200%;
+    background-position: left;
+    color: white;
+    border: 1px solid #706CEE;
+    border-radius: 25px;
+    padding: 0.5rem 1.5rem;
+    transition: background-position 0.3s ease, transform 0.3s ease;
+  }
+  
+  .nextButton:hover {
+    background-position: right;
+    transform: scale(1.05);
+    color: #282828;
+  }
+  
+  .list-unstyled li {
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .list-unstyled li:hover {
+    transform: translateX(10px);
+    color: #706CEE;
+  }
+  
+  h6, h2 {
+    transition: color 0.3s ease;
+  }
+  
+  h6:hover, h2:hover {
+    color: #706CEE;
+  }
+  
+  .fas {
+    transition: transform 0.3s ease;
+  }
+  
+  .fas:hover {
+    transform: scale(1.2);
+  }
+  
+  @media (max-width: 768px) {
+    .col-sm-5 {
+      width: 100%;
+    }
+  
+    .nextButton {
+      width: 100%;
+      text-align: center;
+    }
+  }

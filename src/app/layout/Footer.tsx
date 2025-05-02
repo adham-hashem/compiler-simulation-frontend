@@ -80,28 +80,28 @@ const Footer = () => {
         </Link>
       </div>
       <div ref={socialsRef} className="mb-4 social-icons">
-        <a href="https://instagram.com/hamsycompiler" target="_blank" rel="noopener noreferrer">
+        <a href="" target="_blank" rel="noopener noreferrer">
           <FontAwesomeIcon
             icon={faInstagram}
             className="footer-icon"
             style={{ color: "#706CEE", fontSize: "25px" }}
           />
         </a>
-        <a href="https://twitter.com/hamsycompiler" target="_blank" rel="noopener noreferrer">
+        <a href="" target="_blank" rel="noopener noreferrer">
           <FontAwesomeIcon
             icon={faTwitter}
             className="footer-icon"
             style={{ color: "#706CEE", fontSize: "25px" }}
           />
         </a>
-        <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
+        <a href="https://wa.me/01028110927" target="_blank" rel="noopener noreferrer">
           <FontAwesomeIcon
             icon={faWhatsapp}
             className="footer-icon"
             style={{ color: "#706CEE", fontSize: "25px" }}
           />
         </a>
-        <a href="https://facebook.com/hamsycompiler" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.facebook.com/adham4040" target="_blank" rel="noopener noreferrer">
           <FontAwesomeIcon
             icon={faFacebook}
             className="footer-icon"

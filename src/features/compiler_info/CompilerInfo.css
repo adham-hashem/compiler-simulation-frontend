@@ -1,77 +1,106 @@
 .compiler-container {
-    position: relative;
-    min-height: 100vh;
-    width: 100%;
-    overflow: hidden;
-  }
-  
-  .particles-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #706CEE;
-    z-index: 1;
-  }
-  
-  .count-particles {
-    background: #000022;
-    position: absolute;
-    top: 48px;
-    left: 0;
-    width: 80px;
-    color: #13E8E9;
-    font-size: .8em;
-    text-align: left;
-    text-indent: 4px;
-    line-height: 14px;
-    padding-bottom: 2px;
-    font-family: Helvetica, Arial, sans-serif;
-    font-weight: bold;
-    z-index: 3;
-  }
-  
-  .js-count-particles {
-    font-size: 1.1em;
-  }
-  
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #282828; /* Match HAMSY dark theme */
+  z-index: 1;
+}
+
+.compiler-content {
+  position: relative;
+  padding: 60px 20px 20px;
+  color: white;
+  max-width: 800px;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+.compiler-content h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+.compiler-content h1:hover {
+  color: #706CEE;
+}
+
+.compiler-content h2 {
+  font-size: 1.8em;
+  margin: 20px 0 10px;
+  transition: color 0.3s ease;
+}
+
+.compiler-content h2:hover {
+  color: #706CEE;
+}
+
+.compiler-content p {
+  line-height: 1.6;
+  margin-bottom: 15px;
+  transition: opacity 0.3s ease;
+}
+
+.compiler-content p:hover {
+  opacity: 0.8;
+}
+
+.compiler-content ul {
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.compiler-content li {
+  margin: 10px 0;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.compiler-content li:hover {
+  transform: translateX(10px);
+  color: #706CEE;
+}
+
+.fas {
+  transition: transform 0.3s ease;
+}
+
+.fas:hover {
+  transform: scale(1.2);
+}
+
+canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+@media (max-width: 768px) {
   .compiler-content {
-    position: relative;
-    padding: 60px 20px 20px;
-    color: white;
-    max-width: 800px;
-    margin: 0 auto;
-    z-index: 2;
+    padding: 40px 15px;
   }
-  
+
   .compiler-content h1 {
     font-size: 2em;
-    margin-bottom: 20px;
   }
-  
+
   .compiler-content h2 {
     font-size: 1.5em;
-    margin: 20px 0 10px;
   }
-  
+
   .compiler-content p {
-    line-height: 1.6;
-    margin-bottom: 15px;
+    font-size: 0.9em;
   }
-  
-  .compiler-content ul {
-    padding-left: 20px;
-    margin-bottom: 15px;
-  }
-  
+
   .compiler-content li {
-    margin: 10px 0;
+    font-size: 0.9em;
   }
-  
-  /* Ensure canvas fills container */
-  canvas {
-    display: block;
-    width: 100% !important;
-    height: 100% !important;
-  }
+}

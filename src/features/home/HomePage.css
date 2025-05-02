@@ -804,3 +804,18 @@
   }
 }
 
+ /* Hide by default */
+ .mobile-only {
+  display: none !important;
+}
+
+/* Show only on screens smaller than 768px (typical mobile width) */
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: block !important;
+  }
+}

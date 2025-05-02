@@ -106,7 +106,7 @@ function Header() {
               className="btn contact-us-button"
               to="/contact"
             >
-              <i className="fas fa-envelope me-2"></i>Contact Us
+              <i className="fas fa-envelope me-3"></i>Contact Us
             </Link>
           </form>
         </div>

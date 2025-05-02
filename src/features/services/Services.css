@@ -1,0 +1,113 @@
+.overlay {
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .pt-tablecell:hover .overlay {
+    opacity: 0.7;
+  }
+  
+  .heading-page {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    transition: transform 0.3s ease;
+  }
+  
+  .page-title:hover .heading-page {
+    transform: scale(1.05);
+  }
+  
+  .hexagon-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .hexagon-item:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(112, 108, 238, 0.5);
+  }
+  
+  .hex-content {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .hex-content:hover {
+    color: #706CEE;
+  }
+  
+  .hex-content-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .icon i {
+    font-size: 1.8rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .hexagon-item:hover .icon i {
+    transform: scale(1.2);
+  }
+  
+  .title {
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+  }
+  
+  @media (max-width: 768px) {
+    .hexagon-menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  
+    .hexagon-item {
+      margin: 0.5rem;
+      width: 120px;
+      height: 140px;
+    }
+  
+    .hex-content svg {
+      width: 120px;
+      height: 140px;
+    }
+  
+    .heading-page {
+      font-size: 1.8rem;
+    }
+  
+    .page-title p {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .hexagon-item {
+      width: 100px;
+      height: 120px;
+    }
+  
+    .hex-content svg {
+      width: 100px;
+      height: 120px;
+    }
+  
+    .icon i {
+      font-size: 1.5rem;
+    }
+  
+    .title {
+      font-size: 0.9rem;
+    }
+  }

@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "../css/style.css";
-import "./HomePage.css";
 import Header from "../../app/layout/Header";
 import Footer from "../../app/layout/Footer";
 import Empowering from "../../app/images/Empowering.png";
 import Mission from "../../app/images/Mission.png";
 import Vision from "../../app/images/Vision.png";
 import ScrollButtons from "../scrollButtons/ScrollButtons";
+import "./HomePage.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -255,10 +255,11 @@ const HomePage: React.FC = () => {
             </div>
           </section>
 
+          {/* Mission Section */}
           <section
             ref={addToSectionRefs}
             className="mb-2 mx-5"
-            style={{ padding: "80px 0 40px 0" }}
+            style={{ padding: "80px 0 20px 0" }}
           >
             <div className="row">
               <div className="col-md-6">
@@ -279,10 +280,12 @@ const HomePage: React.FC = () => {
             </div>
           </section>
 
+          {/* Vision Section */}
+          {/* For desktop */}
           <section
             ref={addToSectionRefs}
-            className="mb-2 mx-5"
-            style={{ padding: "80px 0 40px 0" }}
+            className="mb-2 mx-5 hide-on-mobile"
+            style={{ padding: "80px 0 30px 0" }}
           >
             <div className="row">
               <div className="col-md-6 mb-5">
@@ -303,10 +306,36 @@ const HomePage: React.FC = () => {
             </div>
           </section>
 
+          {/* For mobile */}
+          <section
+            ref={addToSectionRefs}
+            className="mb-2 mx-5 mobile-only"
+            style={{ padding: "20px 0 10px 0" }}
+          >
+            <div className="row">
+              <div className="col-md-6">
+                <img
+                  src={Vision}
+                  className="img-fluid rounded shadow-lg"
+                  alt="Our Vision"
+                />
+              </div>
+              <div className="col-md-6 mb-5">
+                <h2 className="text-white mb-5">Our Vision</h2>
+                <p className="text-white mb-5">
+                  To revolutionize the coding experience by providing a seamless,
+                  accessible, and innovative platform that fosters learning,
+                  collaboration, and creativity in software development.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Meet Our Team */}
           <section
             ref={addToSectionRefs}
             className="mx-5"
-            style={{ padding: "80px 0 40px 0" }}
+            style={{ padding: "20px 0 20px 0" }}
           >
             <div className="row">
               <div className="col-md-12 mb-5">

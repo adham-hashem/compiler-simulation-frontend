@@ -19,38 +19,45 @@ function Header() {
 
   useEffect(() => {
     // Animate navbar brand
-    gsap.fromTo(
-      brandRef.current,
-      { opacity: 0, y: -20 },
-      { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
-    );
+    if (brandRef.current) {
+      gsap.fromTo(
+        brandRef.current,
+        { opacity: 0, y: -20 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
+      );
+    }
 
     // Animate nav items with stagger
-    gsap.fromTo(
-      navItemsRef.current,
-      { opacity: 0, y: -20 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power2.out",
-        delay: 0.3,
-      }
-    );
+    if (navItemsRef.current.length > 0) {
+      gsap.fromTo(
+        navItemsRef.current,
+        { opacity: 0, y: -20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: "power2.out",
+          delay: 0.3,
+        }
+      );
+    }
 
     // Animate contact button
-    gsap.fromTo(
-      contactButtonRef.current,
-      { opacity: 0, scale: 0.8 },
-      {
-        opacity: 1,
-        scale: 1,
-        duration: 0.6,
-        ease: "back.out(1.7)",
-        delay: 0.5,
-      }
-    );
+    if (contactButtonRef.current) {
+      gsap.fromTo(
+        contactButtonRef.current,
+        { opacity: 0, scale: 0.8, y: 10 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "back.out(1.7)",
+          delay: 0.5,
+        }
+      );
+    }
   }, []);
 
   return (

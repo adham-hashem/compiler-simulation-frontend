@@ -81,7 +81,7 @@ const VisualizationPage: React.FC = () => {
     // Set playback rate and play
     const setPlaybackAndPlay = () => {
       video.playbackRate = 0.7;
-      console.log('Set playbackRate to 0.5'); // Debug log
+      console.log('Set playbackRate to 0.7'); // Debug log
       video.play().catch((error) => console.error('Video play failed:', error));
     };
 

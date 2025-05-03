@@ -235,6 +235,7 @@ const VisualizationPage: React.FC = () => {
           playsInline
           className="visualization-video"
           aria-label={selectedVisualization?.ariaLabel}
+          preload="metadata"
         >
           <source src={selectedVisualization?.videoSrc} type="video/mp4" />
           Your browser does not support the video tag. Please download the video

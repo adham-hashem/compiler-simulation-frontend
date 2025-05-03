@@ -131,9 +131,9 @@
   background-color: #2a2a2a; /* Matches nav-list background */
   border-radius: 10px;
   padding: 1.5rem;
-  max-width: 90vw; /* Reduced width for smaller screens */
+  max-width: 400px; /* Reduced width for desktop */
+  width: 90%; /* Scale within max-width for smaller screens */
   max-height: 80vh; /* Limit height to fit viewport */
-  width: 100%;
   color: #fff;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   text-align: left;
@@ -223,7 +223,7 @@
 
   .popup {
     padding: 1rem;
-    max-width: 95vw;
+    max-width: 95vw; /* Slightly wider for mobile */
     max-height: 75vh; /* Slightly smaller height for mobile */
   }
 
@@ -233,6 +233,10 @@
 
   .popup p {
     font-size: 0.85rem;
+  }
+
+  .popup ul {
+    padding-left: 1rem;
   }
 
   .popup li {

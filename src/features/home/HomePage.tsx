@@ -289,7 +289,7 @@ const HomePage: React.FC = () => {
           >
             <div className="row">
               <div className="col-md-6 mb-5">
-                <h2 className="text-white mb-">Our Vision</h2>
+                <h2 className="text-white mb-3 mt-3">Our Vision</h2>
                 <p className="text-white mb-5">
                   To revolutionize the coding experience by providing a seamless,
                   accessible, and innovative platform that fosters learning,
@@ -320,8 +320,8 @@ const HomePage: React.FC = () => {
                   alt="Our Vision"
                 />
               </div>
-              <div className="col-md-6 mb-5">
-                <h2 className="text-white mb-5">Our Vision</h2>
+              <div className="col-md-6 mb-3">
+                <h2 className="text-white mb-3 mt-3">Our Vision</h2>
                 <p className="text-white mb-5">
                   To revolutionize the coding experience by providing a seamless,
                   accessible, and innovative platform that fosters learning,

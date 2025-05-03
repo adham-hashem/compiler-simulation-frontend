@@ -269,9 +269,9 @@ const HomePage: React.FC = () => {
                   alt="Our Mission"
                 />
               </div>
-              <div className="col-md-6 mb-5">
+              <div className="col-md-6 mb-2">
                 <h2 className="text-white mb-3 mt-3">Our Mission</h2>
-                <p className="text-white mb-5">
+                <p className="text-white mb-2">
                   To create an intuitive and powerful online compiler that
                   enhances coding efficiency, simplifies development, and empowers
                   programmers of all levels.
@@ -322,7 +322,7 @@ const HomePage: React.FC = () => {
               </div>
               <div className="col-md-6 mb-3">
                 <h2 className="text-white mb-3 mt-3">Our Vision</h2>
-                <p className="text-white mb-5">
+                <p className="text-white mb-2">
                   To revolutionize the coding experience by providing a seamless,
                   accessible, and innovative platform that fosters learning,
                   collaboration, and creativity in software development.

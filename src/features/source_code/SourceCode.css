@@ -1,5 +1,3 @@
-/* SourceCode.css */
-
 @import "../css/style.css";
 
 .source-code-container {
@@ -89,22 +87,41 @@
 .upload-icon {
   cursor: pointer;
   display: inline-block;
-  padding: 8px;
+  padding: 12px;
   border-radius: 50%;
   transition: all 0.3s ease;
+  animation: pulse 2s infinite ease-in-out;
 }
 
 .upload-icon:hover {
-  background-color: rgba(112, 108, 238, 0.2);
-  box-shadow: 0 0 8px rgba(112, 108, 238, 0.5);
+  background-color: rgba(112, 108, 238, 0.3);
+  box-shadow: 0 0 12px rgba(112, 108, 238, 0.7);
+  animation: none; /* Stop pulse on hover */
 }
 
 .upload-icon svg {
   stroke: #fff;
+  width: 24px;
+  height: 24px;
 }
 
 .upload-icon:hover svg {
-  stroke: #706CEE;
+  stroke: #8a86f5; /* Lighter purple */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(112, 108, 238, 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(112, 108, 238, 0.7);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(112, 108, 238, 0.5);
+  }
 }
 
 .drag-handle {
@@ -123,91 +140,85 @@
   color: #ff4444;
 }
 
-/* Button Specific Adjustments */
-.upload-btn {
-  display: inline-block;
-}
-
-.optimize-btn,
-.simulate-btn,
-.memory-btn {
-  min-width: 160px;
-}
-
-/* Mobile Layout (below 768px) */
-@media (max-width: 768px) {
-  .split-container {
-    flex-direction: column;
-    height: auto;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-
-  .code-section,
-  .grammar-section {
-    width: 100% !important;
-    height: auto;
-    margin-bottom: 20px;
-  }
-
-  .code-content,
-  .grammar-content {
-    width: 100%;
-    height: auto;
-    min-height: 450px;
-  }
-
-  .code-wrapper,
-  .grammar-wrapper {
-    height: 400px;
-    width: 100%;
-    overflow-y: auto;
-    overflow-x: auto; /* Keep horizontal scroll on mobile */
-    flex: none;
-  }
-
-  .drag-handle {
-    display: none;
-  }
-}
-
 /* Button Styles */
 .btn {
-  text-decoration: none; /* No underline by default */
-  transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease; /* Add transform transition */
-}
-
-/* Specific button styles */
-.btn.btn-outline-light {
-  color: #fff; /* Default text color */
-  border-color: #fff;
-  background-color: transparent;
-}
-
-.btn.nextButton {
-  color: #fff; /* Default text color */
-  background-color: #706cee; /* Match VisualizationPage hover color as default */
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-height: 48px; /* WCAG touch target size */
   border: none;
+  text-align: center;
 }
 
-/* Hover states */
+/* Primary Buttons (optimize-btn, simulate-btn, memory-btn, nextButton) */
+.optimize-btn,
+.simulate-btn,
+.memory-btn,
+.nextButton {
+  background: linear-gradient(45deg, #706cee, #4a47e0);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(112, 108, 238, 0.4);
+  min-width: 180px;
+}
+
+.optimize-btn:hover,
+.simulate-btn:hover,
+.memory-btn:hover,
+.nextButton:hover {
+  background: linear-gradient(45deg, #8a86f5, #6562e8);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(112, 108, 238, 0.6);
+  color: #fff;
+}
+
+/* Outline Button (btn-outline-light, e.g., upload-btn) */
+.btn.btn-outline-light {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
 .btn.btn-outline-light:hover {
-  background-color: #706cee; /* Purple background like VisualizationPage */
-  color: #fff; /* White text on hover */
-  text-decoration: none; /* No underline */
-  transform: scale(1.05); /* Scale up like VisualizationPage */
+  background: linear-gradient(45deg, #706cee, #4a47e0);
+  border-color: transparent;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(112, 108, 238, 0.6);
 }
 
-.btn.nextButton:hover {
-  background-color: #8a86f5; /* Slightly lighter purple for contrast */
-  color: #fff; /* White text on hover */
-  text-decoration: none; /* No underline */
-  transform: scale(1.05); /* Scale up like VisualizationPage */
-}
-
-/* Ensure custom btn1, btn2, btn3 don’t override */
+/* Custom Buttons (btn1, btn2, btn3) */
 .btn1, .btn2, .btn3 {
-  min-width: 160px; /* Match previous specific adjustments */
+  background: linear-gradient(45deg, #706cee, #4a47e0);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(112, 108, 238, 0.4);
+  min-width: 180px;
+}
+
+.btn1:hover, .btn2:hover, .btn3:hover {
+  background: linear-gradient(45deg, #8a86f5, #6562e8);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(112, 108, 238, 0.6);
+  color: #fff;
+}
+
+/* Upload Button Specific */
+.upload-btn {
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  min-width: 120px;
+}
+
+/* Focus States for Accessibility */
+.btn:focus {
+  outline: 3px solid #8a86f5;
+  outline-offset: 2px;
+  box-shadow: 0 0 10px rgba(112, 108, 238, 0.7);
 }
 
 /* Mobile Layout (below 768px) */
@@ -246,9 +257,53 @@
     display: none;
   }
 
-  /* Adjust button spacing on mobile */
+  /* Button Styles for Mobile */
   .btn {
     display: block;
-    margin: 10px auto; /* Center buttons vertically */
+    width: 100%;
+    max-width: 300px;
+    margin: 12px auto;
+    padding: 14px 20px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+  }
+
+  .optimize-btn,
+  .simulate-btn,
+  .memory-btn,
+  .nextButton,
+  .btn1,
+  .btn2,
+  .btn3 {
+    min-width: unset; /* Full width on mobile */
+  }
+
+  .upload-btn {
+    max-width: 200px;
+    padding: 12px 16px;
+    font-size: 1rem;
+  }
+
+  .upload-icon {
+    padding: 10px;
+  }
+
+  .upload-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Small Mobile Devices (below 480px) */
+@media (max-width: 480px) {
+  .btn {
+    padding: 12px 16px;
+    font-size: 1rem;
+  }
+
+  .upload-btn {
+    max-width: 180px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
   }
 }

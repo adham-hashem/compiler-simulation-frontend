@@ -13,6 +13,10 @@ const CompilerInfo: React.FC = () => {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     // Initialize particles
     if (window.particlesJS && particlesRef.current) {
       window.particlesJS("particles-js", {

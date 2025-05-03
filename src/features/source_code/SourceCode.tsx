@@ -184,44 +184,44 @@ const SourceCode: React.FC = () => {
                 <pre className="text-white">
                   {`<program> ::= <variableDeclaration>* <functionDefinition>* <mainFunction> EOF
 
-                    <functionDefinition> ::= "int" <IDENTIFIER> "(" "int" <IDENTIFIER> "," "int" <IDENTIFIER> ")" "{" <statement>* <returnStatement> "}"
+<functionDefinition> ::= "int" <IDENTIFIER> "(" "int" <IDENTIFIER> "," "int" <IDENTIFIER> ")" "{" <statement>* <returnStatement> "}"
 
-                    <mainFunction> ::= "int" "main" "(" ")" "{" <statement>* <returnStatement> "}"
+<mainFunction> ::= "int" "main" "(" ")" "{" <statement>* <returnStatement> "}"
 
-                    <returnStatement> ::= "return" <expression> ";"
+<returnStatement> ::= "return" <expression> ";"
 
-                    <statement> ::= <variableDeclaration> 
-                                  | <assignment> 
-                                  | <whileLoop> 
-                                  | <ifStatement>
+<statement> ::= <variableDeclaration> 
+              | <assignment> 
+              | <whileLoop> 
+              | <ifStatement>
 
-                    <variableDeclaration> ::= "int" <IDENTIFIER> "=" <expression> ";"
+<variableDeclaration> ::= "int" <IDENTIFIER> "=" <expression> ";"
 
-                    <assignment> ::= <IDENTIFIER> "=" <expression> ";"
+<assignment> ::= <IDENTIFIER> "=" <expression> ";"
 
-                    <whileLoop> ::= "while" "(" <condition> ")" "{" <statement>* "}"
+<whileLoop> ::= "while" "(" <condition> ")" "{" <statement>* "}"
 
-                    <ifStatement> ::= "if" "(" <condition> ")" "{" <statement>* "}" <elseStatement>?
+<ifStatement> ::= "if" "(" <condition> ")" "{" <statement>* "}" <elseStatement>?
 
-                    <elseStatement> ::= "else" "{" <statement>* "}"
+<elseStatement> ::= "else" "{" <statement>* "}"
 
-                    <expression> ::= <operand>
-                                  | <operand> <operator> <operand>
-                                  | <functionCall>
+<expression> ::= <operand>
+              | <operand> <operator> <operand>
+              | <functionCall>
 
-                    <functionCall> ::= <IDENTIFIER> "(" <expression> "," <expression> ")"
+<functionCall> ::= <IDENTIFIER> "(" <expression> "," <expression> ")"
 
-                    <operand> ::= <IDENTIFIER> | <INT>
+<operand> ::= <IDENTIFIER> | <INT>
 
-                    <operator> ::= "+" | "-" | "*" | "/" | "%"
+<operator> ::= "+" | "-" | "*" | "/" | "%"
 
-                    <condition> ::= <operand> <comparisonOperator> <operand>
+<condition> ::= <operand> <comparisonOperator> <operand>
 
-                    <comparisonOperator> ::= ">" | "<" | ">=" | "<=" | "==" | "!="
+<comparisonOperator> ::= ">" | "<" | ">=" | "<=" | "==" | "!="
 
-                    (* Terminals *)
-                    <IDENTIFIER> ::= [a-zA-Z_][a-zA-Z0-9_]* 
-                    <INT> ::= "0" | [1-9][0-9]*
+(* Terminals *)
+<IDENTIFIER> ::= [a-zA-Z_][a-zA-Z0-9_]* 
+<INT> ::= "0" | [1-9][0-9]*
                     `}
                 </pre>
               </div>

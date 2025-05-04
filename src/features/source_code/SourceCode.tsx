@@ -229,18 +229,16 @@ const SourceCode: React.FC = () => {
           </div>
         </div>
 
-        <div className="row mx-0 mt-3">
-          <div className="col text-center">
-            <Link to="/code-optimization" className="btn btn-outline-light py-2 mx-4 mb-2 px-5 btn1">
-              Optimize Code
-            </Link>
-            <Link to="/lexical-analysis" className="btn nextButton py-2 mx-4 mb-2 px-5 btn2">
-              Simulate Code
-            </Link>
-            <Link to="/memory-visualization" className="btn btn-outline-light py-2 mx-4 mb-2 px-5 btn3">
-              Simulate Memory
-            </Link>
-          </div>
+        <div className="button-container mt-3">
+          <Link to="/code-optimization" className="btn-source-code btn-outline-light py-2 px-4 btn1">
+            Optimize Code
+          </Link>
+          <Link to="/lexical-analysis" className="btn-source-code btn-outline-light py-2 px-4 btn2">
+            Simulate Code
+          </Link>
+          <Link to="/memory-visualization" className="btn-source-code btn-outline-light py-2 px-4 btn3">
+            Simulate Memory
+          </Link>
         </div>
 
         <ScrollButtons containerHeight={containerHeight} />

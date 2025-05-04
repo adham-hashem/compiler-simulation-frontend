@@ -1,52 +1,84 @@
 @import "../../features/css/style.css";
 
 .navbar {
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background: linear-gradient(135deg, rgba(40, 40, 40, 0.95) 0%, rgba(60, 60, 60, 0.95) 100%);
+  backdrop-filter: blur(8px);
+  transition: background-color 0.3s ease;
 }
 
 .navbar-brand {
-  font-family: "Arial", sans-serif;
-  font-weight: bold;
-  transition: transform 0.3s ease, color 0.3s ease;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  background: linear-gradient(45deg, #706CEE, #6474ED);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  position: relative;
 }
 
 .navbar-brand:hover {
-  transform: scale(1.1);
-  color: #706CEE !important;
+  transform: scale(1.05);
+  text-shadow: 0 0 10px rgba(51, 109, 233, 0.603);
 }
 
 .nav-link {
+  font-family: "Poppins", sans-serif;
   font-size: 1.1rem;
+  color: #ffffff !important;
   padding: 0.5rem 1.5rem !important;
+  position: relative;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background: linear-gradient(45deg, #706CEE, #00b7eb);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+  left: 0;
+}
+
 .nav-link:hover {
-  color: var(--main-color) !important;
+  color: #00b7eb !important;
   transform: translateY(-2px);
 }
 
+.contact-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .contact-us-button {
-  border: 2px solid var(--main-color);
-  color: white;
-  padding: 0.6rem 1.8rem;
-  border-radius: 30px;
   background: linear-gradient(45deg, #706CEE 0%, #4b47e6 100%);
-  background-size: 150%;
-  background-position: left;
+  color: #ffffff;
+  padding: 0.7rem 2rem;
+  border-radius: 50px;
+  border: none;
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  transition: background-position 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
   display: flex;
   align-items: center;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(112, 108, 238, 0.4);
 }
 
 .contact-us-button:hover {
-  background-position: right;
+  background: linear-gradient(45deg, #00b7eb 0%, #706CEE 100%);
   transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(112, 108, 238, 0.7);
-  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 183, 235, 0.6);
 }
 
 .contact-us-button i {
@@ -58,7 +90,7 @@
 }
 
 .navbar-toggler {
-  border-color: var(--main-color) !important;
+  border-color: #706CEE !important;
 }
 
 .navbar-toggler-icon {
@@ -66,17 +98,43 @@
 }
 
 @media (max-width: 768px) {
+  .navbar-collapse {
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .navbar-nav {
+    margin-bottom: 1rem;
+  }
+
+  .contact-button-container {
+    justify-content: center;
+  }
+
   .contact-us-button {
-    margin: 0.5rem 0 !important;
-    padding: 0.5rem 1.2rem;
-    font-size: 0.9rem;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+    margin: 0.5rem auto;
+    display: inline-flex;
   }
 
   .nav-link {
     padding: 0.5rem 1rem !important;
+    font-size: 1rem;
   }
 
-  .navbar-nav {
-    text-align: center;
+  .navbar-brand {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .contact-us-button {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .navbar-brand {
+    font-size: 1.6rem;
   }
 }

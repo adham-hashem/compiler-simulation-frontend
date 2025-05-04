@@ -31,8 +31,21 @@ const HomePage: React.FC = () => {
     }
   };
 
+  // Ensure scroll to top on initial load
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Immediate scroll reset
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    window.scrollTo({ top: 0, behavior: "auto" });
+
+    // Additional scroll reset after a short delay to handle rendering
+    const timer = setTimeout(() => {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -59,13 +72,14 @@ const HomePage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // Main content animation
+    // Main content animation with Animate.css
     if (mainContentRef.current) {
       gsap.fromTo(
         mainContentRef.current,
         { opacity: 0, y: 50 },
         { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
       );
+      mainContentRef.current.classList.add("animate__animated", "animate__fadeInUp");
     }
 
     // Button animation
@@ -84,14 +98,20 @@ const HomePage: React.FC = () => {
             delay: 0.5,
           }
         );
+        buttons.forEach((btn) => {
+          btn.classList.add("animate__animated", "animate__pulse", "animate__fast");
+        });
       }
     }
 
-    // Section animations
+    // Section animations with Animate.css
     sectionRefs.current.forEach((section) => {
       const img = section.querySelector("img");
       const text = section.querySelectorAll("h2, p");
       const button = section.querySelector(".learn-more-button");
+
+      // Add Animate.css to section
+      section.classList.add("animate__animated", "animate__fadeIn");
 
       // Image parallax
       if (img) {
@@ -111,6 +131,7 @@ const HomePage: React.FC = () => {
             },
           }
         );
+        img.classList.add("animate__animated", "animate__zoomIn");
       }
 
       // Text animation
@@ -130,6 +151,9 @@ const HomePage: React.FC = () => {
             },
           }
         );
+        text.forEach((el) => {
+          el.classList.add("animate__animated", "animate__fadeInLeft");
+        });
       }
 
       // Button animation
@@ -148,6 +172,7 @@ const HomePage: React.FC = () => {
             },
           }
         );
+        button.classList.add("animate__animated", "animate__bounceIn");
       }
     });
 
@@ -213,12 +238,7 @@ const HomePage: React.FC = () => {
           )}
         </div>
 
-        <div className="container-fluid">
-          <div
-            className="main-background-color"
-            style={{ height: "40px" }}
-          ></div>
-
+        <div className="container-fluid main-background-color">
           <section
             ref={addToSectionRefs}
             className="div-background-color empowering-section mb-2 mx-5 rounded-div"
@@ -255,7 +275,6 @@ const HomePage: React.FC = () => {
             </div>
           </section>
 
-          {/* Mission Section */}
           <section
             ref={addToSectionRefs}
             className="mb-2 mx-5"
@@ -280,8 +299,6 @@ const HomePage: React.FC = () => {
             </div>
           </section>
 
-          {/* Vision Section */}
-          {/* For desktop */}
           <section
             ref={addToSectionRefs}
             className="mb-2 mx-5 hide-on-mobile"
@@ -306,7 +323,6 @@ const HomePage: React.FC = () => {
             </div>
           </section>
 
-          {/* For mobile */}
           <section
             ref={addToSectionRefs}
             className="mb-2 mx-5 mobile-only"
@@ -331,7 +347,6 @@ const HomePage: React.FC = () => {
             </div>
           </section>
 
-          {/* Meet Our Team */}
           <section
             ref={addToSectionRefs}
             className="mx-5"

@@ -64,17 +64,12 @@ function Header() {
     <nav
       ref={navbarRef}
       className="navbar navbar-expand-sm navbar-dark sticky-top"
-      style={{
-        backgroundColor: "#282828",
-        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
-      }}
     >
       <div className="container-fluid">
         <Link
           ref={brandRef}
           className="navbar-brand"
           to="/"
-          style={{ color: "var(--main-color)", fontSize: "1.8rem" }}
         >
           <b>HAMSY</b>
         </Link>
@@ -90,7 +85,7 @@ function Header() {
           className="collapse navbar-collapse justify-content-between"
           id="mynavbar"
         >
-          <ul className="navbar-nav me-auto">
+          <ul className="navbar-nav">
             <li className="nav-item" ref={addToNavItemsRef}>
               <Link className="nav-link" to="/">
                 Home
@@ -107,15 +102,15 @@ function Header() {
               </Link>
             </li>
           </ul>
-          <form className="d-flex">
+          <div className="contact-button-container">
             <Link
               ref={contactButtonRef}
               className="btn contact-us-button"
               to="/contact"
             >
-              <i className="fas fa-envelope me-3"></i>Contact Us
+              <i className="fas fa-envelope me-2"></i>Contact Us
             </Link>
-          </form>
+          </div>
         </div>
       </div>
     </nav>

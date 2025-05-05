@@ -20,7 +20,11 @@ interface ParseTreeNode {
 const SymbolTables: React.FC = () => {
   const { parseTree, tokens, code, setSymbolTables, symbolTables } = useCompilation();
   const [errors, setErrors] = useState<string[]>([]);
-  const [notes, setNotes] = useState<string[]>([]);
+  const [notes, setNotes] = useState<string[]>([
+    "This is not a compilation phase, instead the symbol table is created and used by all phases, but we are showing it as a separate phase for more clarification",
+    "Since we have scopes in our language, a symbol table is created for each scope",
+    "Fields of a symbol table can contain more information like memory address, declaration line or data type, but for simplicity we only show the name and the type of the name",
+  ]);
   const [loading, setLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerHeight, setContainerHeight] = useState(0);
@@ -65,7 +69,6 @@ const SymbolTables: React.FC = () => {
         if (Array.isArray(parsedTables) && parsedTables.length > 0) {
           setSymbolTables(parsedTables);
           setErrors([]);
-          setNotes([]);
           console.log("Using cached symbol tables from local storage");
           return; // Skip API fetch if valid data is found
         }

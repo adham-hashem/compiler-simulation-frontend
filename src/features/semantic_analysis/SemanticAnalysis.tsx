@@ -30,7 +30,9 @@ const SemanticAnalysis: React.FC = () => {
   const parseTreeSvgRef = useRef<SVGSVGElement | null>(null);
   const abstractSyntaxTreeSvgRef = useRef<SVGSVGElement | null>(null);
   const [errors, setErrors] = useState<string[]>([]);
-  const [notes, setNotes] = useState<string[]>([]);
+  const [notes, setNotes] = useState<string[]>([
+    "semantic analysis performs other operations like type checking or array access checking, but since we only have one data type and no arrays we only perform AST generation",
+  ]);
   const [loading, setLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerHeight, setContainerHeight] = useState(0);

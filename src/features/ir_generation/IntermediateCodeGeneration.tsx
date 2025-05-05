@@ -29,7 +29,13 @@ const IntermediateCodeGeneration: React.FC = () => {
   const { code, tokens, abstractSyntaxTree, setAbstractSyntaxTree, intermediateCode, setIntermediateCode } = useCompilation();
   const abstractSyntaxTreeSvgRef = useRef<SVGSVGElement | null>(null);
   const [errors, setErrors] = useState<string[]>([]);
-  const [notes, setNotes] = useState<string[]>([]);
+  const [notes, setNotes] = useState<string[]>([
+    "-Optimization techniques supported are:",
+    "Constant folding",
+    "Constant propagation",
+    "Common sub-expression elimination",
+    "-Optimization is performed per basic block not globally",
+  ]);
   const [loading, setLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerHeight, setContainerHeight] = useState(0);

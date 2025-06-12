@@ -23,3 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 .env
+update_components.py
+update_components.log
+get files contents.py
+all_files_contents.txt

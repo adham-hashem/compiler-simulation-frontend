@@ -101,6 +101,16 @@ function Header() {
                 Services
               </Link>
             </li>
+            <li className="nav-item" ref={addToNavItemsRef}>
+              <Link className="nav-link" to="/explore">
+                Explore
+              </Link>
+            </li>
+            <li className="nav-item" ref={addToNavItemsRef}>
+              <Link className="nav-link" to="/why-hamsy">
+                Why HAMSY?
+              </Link>
+            </li>
           </ul>
           <div className="contact-button-container">
             <Link

@@ -29,6 +29,21 @@ import VisualizationPage from "../../features/visualization/visualization_page/V
 // import VisualizationOverview from "../../features/visualization/visualization_overview/VisualizationOverview";
 import CompilationStagesPage from "../../features/visualization/compilation_stages_page/CompilationStagesPage";
 import MemoryPage from "../../features/visualization/memory_page/MemoryPage";
+import WhyHamsy from "../../features/why_hamsy/WhyHamsy";
+import CompilerWorking from "../../features/explainations/compiler_working/CompilerWorking";
+import LexicalAnalysisExplaination from "../../features/explainations/lexical_analysis_explaination/LexicalAnalysisExplaination";
+import SyntaxAnalysisExplaination from "../../features/explainations/Syntax_analysis_explaination/SyntaxAnalysisExplaination";
+import SemanticAnalysisExplaination from "../../features/explainations/semantic_analysis_explaination/SemanticAnalysisExplaination";
+import IntermediateCodeGenerationExplaination from "../../features/explainations/intermediate_code_generation/IntermediateCodeGenerationExplaination";
+import IntermediateCodeOptimizationExplaination from "../../features/explainations/intermediate_code_optimization_explaination/IntermediateCodeOptimizationExplaination";
+import InstructionSelectionExplaination from "../../features/explainations/instruction_selection_explaination/InstructionSelectionExplaination";
+import RegisterAllocationExplaination from "../../features/explainations/register_allocation_explaination/RegisterAllocationExplaination";
+import RegisterSchedulingExplaination from "../../features/explainations/register_scheduling_explaination/RegisterSchedulingExplaination";
+import MemoryAnalysisExplaination from "../../features/explainations/memory_analysis_explaination/MemoryAnalysisExplaination";
+import AICodeOptimizationExplaination from "../../features/explainations/AI_code_optimization_explaination/AICodeOptimizationExplaination";
+import SymbolTablesExplaination from "../../features/explainations/symbol_tables_explaination/SymbolTablesExplaination";
+import Explore from "../../features/explainations/explore/Explore";
+import OCRExplaination from "../../features/explainations/ocr_explaination/OCRExplaination";
 
 export const router = createBrowserRouter([
     {
@@ -39,7 +54,22 @@ export const router = createBrowserRouter([
             { path: 'about', element: <AboutPage /> },
             { path: 'contact', element: <ContactPage />},
             { path: 'services', element: <Services />},
+            { path: 'why-hamsy', element: <WhyHamsy /> },
             { path: 'what-is-compiler', element: <CompilerInfo />},
+            { path: 'explore', element: <Explore />},
+            { path: 'compiler-working-explaination', element: <CompilerWorking />},
+            { path: 'lexical-analysis-explaination', element: <LexicalAnalysisExplaination />},
+            { path: 'syntax-analysis-explaination', element: <SyntaxAnalysisExplaination />},
+            { path: 'symbol-tables-explaination', element: <SymbolTablesExplaination />},
+            { path: 'semantic-analysis-explaination', element: <SemanticAnalysisExplaination />},
+            { path: 'intermediate-code-generation-explaination', element: <IntermediateCodeGenerationExplaination />},
+            { path: 'intermediate-code-optimization-explaination', element: <IntermediateCodeOptimizationExplaination />},
+            { path: 'instruction-selection-explaination', element: <InstructionSelectionExplaination />},
+            { path: 'register-allocation-explaination', element: <RegisterAllocationExplaination />},
+            { path: 'register-scheduling-explaination', element: <RegisterSchedulingExplaination />},
+            { path: 'memory-analysis-explaination', element: <MemoryAnalysisExplaination />},
+            { path: 'ai-code-optimization-explaination', element: <AICodeOptimizationExplaination />},
+            { path: 'ocr-explaination', element: <OCRExplaination />},
             { path: 'source-code', element: <SourceCode /> },
             { path: 'memory-visualization', element: <MemoryVisualization/> },
             { path: 'code-optimization', element: <CodeOptimization/> },

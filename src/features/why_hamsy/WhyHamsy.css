@@ -1,0 +1,9 @@
+.member-card {
+  transition: transform 0.3s ease;
+}
+.member-card:hover {
+  transform: translateY(-5px);
+}
+.hamsy-letter {
+  font-weight: bold;
+}

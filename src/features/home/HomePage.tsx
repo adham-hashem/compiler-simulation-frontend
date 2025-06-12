@@ -24,6 +24,17 @@ const HomePage: React.FC = () => {
   const buttonContainerRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<HTMLElement[]>([]);
 
+  // Team members data from document
+  const teamMembers = [
+    { name: "Haneen Ahmed Deep Alhasan", program: "CS Student, System Analyst" },
+    { name: "Ammar Elsayed Elsayed Antar", program: "IT Student, UI Designer" },
+    { name: "Adham Hashem Mohamed Elbeshbeshy", program: "IT Student, Frontend Developer" },
+    { name: "Youssef Rafie Mohamed Elbosaty", program: "CS student, Backend Developer" },
+    { name: "Mariam Nashaat Badran Eid", program: "CS Student, Backend Developer" },
+    { name: "Salah Saad Salah Hafez", program: "CS Student, Application Tester" },
+  ];
+  const supervisor = "Dr. Heba Hamed El Hadidi";
+
   // Add refs to sections
   const addToSectionRefs = (el: HTMLElement | null) => {
     if (el && !sectionRefs.current.includes(el)) {
@@ -107,7 +118,7 @@ const HomePage: React.FC = () => {
     // Section animations with Animate.css
     sectionRefs.current.forEach((section) => {
       const img = section.querySelector("img");
-      const text = section.querySelectorAll("h2, p");
+      const text = section.querySelectorAll("h2, p, .team-card");
       const button = section.querySelector(".learn-more-button");
 
       // Add Animate.css to section
@@ -134,7 +145,7 @@ const HomePage: React.FC = () => {
         img.classList.add("animate__animated", "animate__zoomIn");
       }
 
-      // Text animation
+      // Text and team card animation
       if (text.length > 0) {
         gsap.fromTo(
           text,
@@ -357,6 +368,23 @@ const HomePage: React.FC = () => {
                 <h2 className="text-white text-center mb-5">
                   Meet Our Team Members
                 </h2>
+                <div className="row">
+                  {teamMembers.map((member, index) => (
+                    <div key={index} className="col-md-4 col-sm-6 mb-4">
+                      <div
+                        className="team-card text-center p-4 rounded shadow-lg"
+                        style={{ backgroundColor: "#282828", border: "1px solid #282828" }}
+                      >
+                        <h5 className="text-white mb-2">{member.name}</h5>
+                        <p className="text-muted mb-0">{member.program}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="text-center mt-5">
+                  <h4 className="text-white mb-3">Supervised By</h4>
+                  <p className="text-white mb-0">{supervisor}</p>
+                </div>
               </div>
             </div>
           </section>

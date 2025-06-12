@@ -13,7 +13,10 @@ import { API_BASE_URL } from '../../config';
 const InstructionSelection: React.FC = () => {
   const { optimizedIR, setAssemblyCode, assemblyCode } = useCompilation();
   const [errors, setErrors] = useState<string[]>([]);
-  const [notes, setNotes] = useState<string[]>([]);
+  const [notes, setNotes] = useState<string[]>([
+    "The converted to language is ILOC",
+    "ILOC isn't actual assembly, instead it's a low level IR, but it's a good example to use since it's close to assembly languages.",
+  ]);
   const [loading, setLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerHeight, setContainerHeight] = useState(0);

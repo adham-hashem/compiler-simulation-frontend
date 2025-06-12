@@ -23,27 +23,29 @@ const CodeOptimization: React.FC = () => {
     window.scrollTo(0, 0);
   }, []);
 
-    // Measure container height on mount and resize
-    useEffect(() => {
-        const updateHeight = () => {
-            if (containerRef.current) {
-            setContainerHeight(containerRef.current.scrollHeight);
-            }
-        };
+  // Measure container height on mount and resize
+  useEffect(() => {
+    const updateHeight = () => {
+      if (containerRef.current) {
+        setContainerHeight(containerRef.current.scrollHeight);
+      }
+    };
 
-        updateHeight();
-        window.addEventListener("resize", updateHeight);
-        return () => window.removeEventListener("resize", updateHeight);
-        }, []);
+    updateHeight();
+    window.addEventListener("resize", updateHeight);
+    return () => window.removeEventListener("resize", updateHeight);
+  }, []);
 
   // Fetch Optimized Code from API using code
   useEffect(() => {
     const fetchOptimizedCode = async () => {
-      console.log("SourceCode from context:", code);
       if (!code) {
-        console.log("Skipping fetch: No source code");
+        console.log("Skipping fetch: No source code provided");
+        setErrors(["No source code provided"]);
+        setOptimizedCode(null);
         return;
       }
+
       setLoading(true);
       setErrors([]);
       setNotes([]);
@@ -58,18 +60,16 @@ const CodeOptimization: React.FC = () => {
           body: JSON.stringify(requestBody),
         });
 
-        const responseText = await response.text();
-        console.log("Raw API response:", responseText);
-
         if (!response.ok) {
-          throw new Error(`Failed to fetch optimized code: ${response.status} - ${responseText}`);
+          const errorText = await response.text();
+          throw new Error(`Failed to fetch optimized code: ${response.status} - ${errorText}`);
         }
 
-        const data = JSON.parse(responseText);
+        const data = await response.json();
         console.log("Parsed API data:", data);
 
         const optimized = data.optimizedCode as string;
-        if (!optimized && optimized !== "") {
+        if (optimized == null || optimized === undefined) {
           console.warn("No optimized code returned in response");
           setErrors(["API returned no optimized code"]);
           setOptimizedCode(null);
@@ -93,9 +93,9 @@ const CodeOptimization: React.FC = () => {
     <>
       <Header />
       <div
-      ref={containerRef}
-      className="container-fluid text-white main-background-color"
-      style={{ minHeight: "100vh", padding: "20px" }}
+        ref={containerRef}
+        className="container-fluid text-white main-background-color"
+        style={{ minHeight: "100vh", padding: "20px" }}
       >
         <h2 className="text-center text-white mb-3">Code Optimization</h2>
         <div className="row mb-2">

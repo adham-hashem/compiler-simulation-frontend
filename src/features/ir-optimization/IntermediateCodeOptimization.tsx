@@ -206,9 +206,9 @@ const IntermediateCodeOptimization: React.FC = () => {
           </div>
         </div>
 
-        <div className="errors-section">
+        {/* <div className="errors-section">
           <Errors errors={errors} />
-        </div>
+        </div> */}
 
         <Notes notes={notes} />
 

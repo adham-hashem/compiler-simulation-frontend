@@ -240,8 +240,8 @@ const InstructionScheduling: React.FC = () => {
           </div>
         </div>
 
-        {/* Errors Section */}
-        <Errors errors={errors} />
+        {/* Errors Section
+        <Errors errors={errors} /> */}
 
         {/* Notes Section */}
         <Notes notes={notes} />

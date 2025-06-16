@@ -44,6 +44,7 @@ import AICodeOptimizationExplaination from "../../features/explainations/AI_code
 import SymbolTablesExplaination from "../../features/explainations/symbol_tables_explaination/SymbolTablesExplaination";
 import Explore from "../../features/explainations/explore/Explore";
 import OCRExplaination from "../../features/explainations/ocr_explaination/OCRExplaination";
+import CpuMemoryVisualization from "../../features/visualization/cpu_memory_visualization/CpuMemoryVisualization";
 
 export const router = createBrowserRouter([
     {
@@ -85,6 +86,7 @@ export const router = createBrowserRouter([
             { path: 'visualization', element: <VisualizationPage /> },
             // { path: 'visualization-overview', element: <VisualizationOverview /> },
             { path: 'memory-graphical-visualization', element: <MemoryGraphicalVisualization />},
+            { path: 'cpu-memory-visualization', element: <CpuMemoryVisualization />},
             // { path: 'lexical-analysis-visualization', element: <LexicalAnalysisVisualization />},
             // { path: 'parse-tree-visualization', element: <ParseTreeVisualization />},
             // { path: 'abstract-syntax-visualization', element: <AbstractSyntaxTreeVisualization />},

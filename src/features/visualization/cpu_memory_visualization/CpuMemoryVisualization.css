@@ -1,0 +1,305 @@
+.cpu-memory-visualization-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #1a1a1a; /* Dark theme */
+  color: #fff;
+  position: relative; /* For positioning sliding nav */
+}
+
+.video-container {
+  transition: filter 0.3s ease; /* Smooth blur transition */
+}
+
+.video-container.blurred {
+  filter: blur(5px); /* Apply blur to video when popup is open */
+}
+
+.cpu-memory-video {
+  width: 100%; /* Full width of viewport */
+  max-width: none; /* Remove max-width constraint */
+  height: 100vh; /* Full viewport height */
+  object-fit: contain; /* Maintain aspect ratio */
+  display: block; /* Ensure block-level for full width */
+  border-radius: 0; /* Remove border-radius for edge-to-edge */
+}
+
+/* Sliding Navigation Styles */
+.sliding-nav {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  z-index: 1000; /* Above video, below popup */
+  filter: none; /* Ensure navigation is not blurred */
+}
+
+.nav-arrow {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  z-index: 1001; /* Above nav-list */
+}
+
+.nav-arrow svg {
+  width: 24px;
+  height: 24px;
+  stroke: #fff;
+  transition: stroke 0.3s ease;
+}
+
+.nav-arrow:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.nav-arrow:hover svg {
+  stroke: #1e90ff; /* Blue on hover */
+}
+
+.nav-list {
+  background-color: #2a2a2a; /* Slightly lighter than page background */
+  width: 250px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+  pointer-events: auto; /* Ensure menu is interactable */
+  transform: translateX(-100%); /* Initial state */
+  visibility: hidden; /* Completely hide when closed */
+  transition: transform 0.3s ease; /* Smooth transition for transform only */
+}
+
+.nav-list--open {
+  transform: translateX(0); /* Slide in */
+  visibility: visible; /* Show when open */
+}
+
+.nav-item {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: block; /* Ensure Link behaves consistently */
+}
+
+.nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #1e90ff;
+}
+
+.nav-item--active {
+  background-color: #1e90ff; /* Solid blue for active state */
+  color: #fff; /* White text for contrast */
+}
+
+.nav-item--active:hover {
+  background-color: #1c86ee; /* Slightly darker blue on hover */
+  color: #fff; /* Maintain white text */
+}
+
+/* Popup Styles */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000; /* Above video and nav */
+  filter: none; /* Ensure overlay is not blurred */
+  overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+.popup {
+  background-color: #2a2a2a; /* Matches nav-list background */
+  border-radius: 10px;
+  padding: 1.5rem;
+  max-width: 400px; /* Reduced width for desktop */
+  width: 90%; /* Scale within max-width for smaller screens */
+  max-height: 80vh; /* Limit height to fit viewport */
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  text-align: left;
+  z-index: 2001; /* Above overlay */
+  filter: none; /* Ensure popup is not blurred */
+  overflow-y: auto; /* Enable scrolling within popup */
+  display: flex;
+  flex-direction: column;
+}
+
+.popup h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  color: #1e90ff; /* Blue accent */
+}
+
+.popup p {
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+}
+
+.popup ul {
+  list-style-type: disc;
+  padding-left: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.popup li {
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+}
+
+.popup-close-button {
+  background-color: #1e90ff; /* Blue button */
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+  margin-left: auto;
+  margin-top: auto; /* Push button to bottom of popup */
+}
+
+.popup-close-button:hover {
+  background-color: #1c86ee; /* Slightly darker blue on hover */
+}
+
+.popup-close-button:focus {
+  outline: 2px solid #1e90ff;
+  outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cpu-memory-video {
+    width: 100%;
+    height: auto; /* Adjust height for mobile */
+  }
+
+  .nav-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nav-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .nav-list {
+    width: 200px; /* Smaller width on mobile */
+    padding: 0.75rem;
+  }
+
+  .nav-item {
+    font-size: 0.9rem;
+    padding: 0.4rem;
+  }
+
+  .popup {
+    padding: 1rem;
+    max-width: 95vw; /* Slightly wider for mobile */
+    max-height: 75vh; /* Slightly smaller height for mobile */
+  }
+
+  .popup h2 {
+    font-size: 1.2rem;
+  }
+
+  .popup p {
+    font-size: 0.85rem;
+  }
+
+  .popup li {
+    font-size: 0.8rem;
+  }
+
+  .popup-close-button {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-list {
+    width: 180px;
+  }
+
+  .nav-item {
+    font-size: 0.85rem;
+  }
+
+  .popup {
+    padding: 0.8rem;
+    max-height: 70vh; /* Further reduce height */
+  }
+
+  .popup h2 {
+    font-size: 1.1rem;
+  }
+
+  .popup p {
+    font-size: 0.8rem;
+  }
+
+  .popup li {
+    font-size: 0.75rem;
+  }
+
+  .popup-close-button {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Landscape Orientation */
+@media (max-height: 500px) and (orientation: landscape) {
+  .popup {
+    max-height: 90vh; /* Use most of the viewport height */
+    max-width: 80vw; /* Reduce width to fit */
+    padding: 0.8rem;
+    font-size: 0.9rem; /* Slightly smaller font for compact display */
+  }
+
+  .popup h2 {
+    font-size: 1rem;
+  }
+
+  .popup p {
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .popup ul {
+    padding-left: 1rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .popup li {
+    font-size: 0.7rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .popup-close-button {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+  }
+}

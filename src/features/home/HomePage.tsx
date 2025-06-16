@@ -245,6 +245,12 @@ const HomePage: React.FC = () => {
               >
                 Memory
               </Link>
+              <Link
+                to="/cpu-memory-visualization"
+                className="visualizer-btn"
+              >
+                CPU-Memory
+              </Link>
             </div>
           )}
         </div>

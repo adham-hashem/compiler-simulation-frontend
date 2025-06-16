@@ -54,10 +54,15 @@
 
 1. **Clone the repository**  
 ```bash
+git clone https://github.com/adham-hashem/compiler-simulation-frontend.git
+```
+
+2. **Install the required node modules**
+```
 npm install
 ```
 
-2. **Run the frontend**
+3. **Run the frontend application**
 ```
 npm start
 ```

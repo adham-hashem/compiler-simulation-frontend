@@ -13,8 +13,9 @@ const SourceCode: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [containerHeight, setContainerHeight] = useState(0);
-  const [codeWidth, setCodeWidth] = useState(50); // Default 50% width
+  const [codeWidth, setCodeWidth] = useState(50);
   const dragRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
 
@@ -135,6 +136,7 @@ const SourceCode: React.FC = () => {
             <div className="p-3 rounded-div code-content">
               <h3 className="text-white">Source Code</h3>
               <textarea
+                ref={textareaRef} // Attach ref to textarea
                 className={`form-control code-wrapper text-white ${isDragging ? "dragging" : ""}`}
                 rows={17}
                 value={code}
@@ -142,6 +144,20 @@ const SourceCode: React.FC = () => {
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
+                onKeyDown={(e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+                  if (e.key === "Tab") {
+                    e.preventDefault(); // Prevent default tab behavior (focus change)
+                    const textarea = textareaRef.current;
+                    if (textarea) {
+                      const start = textarea.selectionStart;
+                      const end = textarea.selectionEnd;
+                      const newValue = code.substring(0, start) + "    " + code.substring(end); // Insert 4 spaces
+                      updateCode(newValue);
+                      // Set cursor position after the inserted spaces
+                      textarea.selectionStart = textarea.selectionEnd = start + 4;
+                    }
+                  }
+                }}
                 placeholder="Enter your source code here or drag and drop an image..."
               />
               <div className="upload-section text-center mt-3">

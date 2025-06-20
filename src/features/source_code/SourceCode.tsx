@@ -4,12 +4,14 @@ import Header from "../../app/layout/Header";
 import Footer from "../../app/layout/Footer";
 import "../css/style.css";
 import { useCompilation } from "../context/CompilationContext";
+import { useTheme } from "../context/ThemeContext";
 import ScrollButtons from "../scrollButtons/ScrollButtons";
 import "./SourceCode.css";
 import { API_BASE_URL } from '../../config';
 
 const SourceCode: React.FC = () => {
   const { code, updateCode } = useCompilation();
+  const { theme } = useTheme();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -127,17 +129,17 @@ const SourceCode: React.FC = () => {
   return (
     <>
       <Header />
-      <div ref={containerRef} className="container-fluid text-white main-background-color source-code-container">
-        <h2 className="mb-3 text-white text-center">Source Code Input</h2>
+      <div ref={containerRef} className={`container-fluid main-background-color source-code-container ${theme}`}>
+        <h2 className="mb-3 text-center">Source Code Input</h2>
 
         <div className="split-container">
           {/* Source Code Section */}
           <div className="code-section" style={{ width: `calc(${codeWidth}% - 5px)` }}>
             <div className="p-3 rounded-div code-content">
-              <h3 className="text-white">Source Code</h3>
+              <h3>Source Code</h3>
               <textarea
-                ref={textareaRef} // Attach ref to textarea
-                className={`form-control code-wrapper text-white ${isDragging ? "dragging" : ""}`}
+                ref={textareaRef}
+                className={`form-control code-wrapper ${isDragging ? "loading" : ""}`}
                 rows={17}
                 value={code}
                 onChange={(e) => updateCode(e.target.value)}
@@ -146,14 +148,13 @@ const SourceCode: React.FC = () => {
                 onDrop={handleDrop}
                 onKeyDown={(e: React.KeyboardEvent<HTMLTextAreaElement>) => {
                   if (e.key === "Tab") {
-                    e.preventDefault(); // Prevent default tab behavior (focus change)
+                    e.preventDefault();
                     const textarea = textareaRef.current;
                     if (textarea) {
-                      const start = textarea.selectionStart;
-                      const end = textarea.selectionEnd;
-                      const newValue = code.substring(0, start) + "    " + code.substring(end); // Insert 4 spaces
+                      const start = textarea.selectionStart || 0;
+                      const end = textarea.selectionEnd || 0;
+                      const newValue = code.substring(0, start) + "    " + code.substring(end);
                       updateCode(newValue);
-                      // Set cursor position after the inserted spaces
                       textarea.selectionStart = textarea.selectionEnd = start + 4;
                     }
                   }
@@ -167,7 +168,7 @@ const SourceCode: React.FC = () => {
                     height="24"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="#fff"
+                    stroke="var(--text)"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -178,8 +179,8 @@ const SourceCode: React.FC = () => {
                   </svg>
                   <input type="file" accept="image/*" className="d-none" onChange={handleButtonUpload} />
                 </label>
-                {loading && <span className="ms-2" style={{ color: "green" }}>Processing...</span>}
-                {error && <p className="text-danger mt-2">{error}</p>}
+                {loading && <span className="ms-2 text-success">Processing...</span>}
+                {error && <p className="text-danger">{error}</p>}
               </div>
             </div>
           </div>
@@ -194,10 +195,10 @@ const SourceCode: React.FC = () => {
 
           {/* Grammar Section */}
           <div className="grammar-section" style={{ width: `calc(${100 - codeWidth}% - 5px)` }}>
-            <div className="p-3 rounded-div grammar-content">
-              <h3 className="text-white">Grammar</h3>
+            <div className="p-3 rounded-div grammar">
+              <h3>Grammar</h3>
               <div className="grammar-wrapper">
-                <pre className="text-white">
+                <pre>
                   {`<program> ::= <variableDeclaration>* <functionDefinition>* <mainFunction> EOF
 
 <functionDefinition> ::= "int" <IDENTIFIER> "(" "int" <IDENTIFIER> "," "int" <IDENTIFIER> ")" "{" <statement>* <returnStatement> "}"
@@ -237,8 +238,7 @@ const SourceCode: React.FC = () => {
 
 (* Terminals *)
 <IDENTIFIER> ::= [a-zA-Z_][a-zA-Z0-9_]* 
-<INT> ::= "0" | [1-9][0-9]*
-                    `}
+<INT> ::= "0" | [1-9][0-9]*`}
                 </pre>
               </div>
             </div>
@@ -246,13 +246,13 @@ const SourceCode: React.FC = () => {
         </div>
 
         <div className="button-container mt-3">
-          <Link to="/code-optimization" className="btn-source-code btn-outline-light py-2 px-4 btn1">
+          <Link to="/code-optimization" className="btn btn-primary btn1">
             Optimize Code
           </Link>
-          <Link to="/lexical-analysis" className="btn-source-code btn-outline-light py-2 px-4 btn2">
+          <Link to="/lexical-analysis" className="btn btn-primary btn2">
             Simulate Code
           </Link>
-          <Link to="/memory-visualization" className="btn-source-code btn-outline-light py-2 px-4 btn3">
+          <Link to="/memory-visualization" className="btn btn-primary btn3">
             Simulate Memory
           </Link>
         </div>

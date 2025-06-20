@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useCompilation } from "../context/CompilationContext";
+import { useTheme } from "../context/ThemeContext";
 import Header from "../../app/layout/Header";
 import Footer from "../../app/layout/Footer";
 import Notes from "../../features/notes/Notes";
@@ -12,6 +13,7 @@ import { API_BASE_URL } from '../../config';
 
 const LexicalAnalysis: React.FC = () => {
   const { code, setCode, tokens, setTokens } = useCompilation();
+  const { theme } = useTheme();
   const [errors, setErrors] = useState<string[]>([]);
   const [notes, setNotes] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
@@ -104,16 +106,16 @@ const LexicalAnalysis: React.FC = () => {
   return (
     <>
       <Header />
-      <div ref={containerRef} className="container-fluid text-white main-background-color lexical-container">
-        <h2 className="mb-3 text-white text-center">Lexical Analysis</h2>
+      <div ref={containerRef} className={`container-fluid main-background-color lexical-container ${theme}`}>
+        <h2 className="mb-3 text-center">Lexical Analysis</h2>
 
         <div className="split-container">
           {/* Source Code Section */}
           <div className="source-section" style={{ width: `${sourceWidth}%` }}>
             <div className="p-3 rounded-div source-content">
-              <h2 className="mb-3 text-white">Source Code</h2>
+              <h2 className="mb-3">Source Code</h2>
               <textarea
-                className="form-control p-3 text-white source-textarea"
+                className="form-control p-3 source-textarea"
                 value={code}
                 readOnly
               />
@@ -131,14 +133,14 @@ const LexicalAnalysis: React.FC = () => {
           {/* Tokens Section */}
           <div className="tokens-section" style={{ width: `${100 - sourceWidth}%` }}>
             <div className="p-3 rounded-div tokens-content">
-              <h2 className="mb-3 text-white">Tokens</h2>
+              <h2 className="mb-3">Tokens</h2>
               {loading ? (
                 <p className="text-warning">Analyzing...</p>
               ) : tokens.length > 0 ? (
                 <div className="tokens-table-wrapper">
                   <table className="table table-bordered tokens-table">
                     <thead>
-                      <tr style={{ background: "#616161", color: "white" }}>
+                      <tr>
                         <th style={{ borderTopLeftRadius: "10px" }}>Lexeme</th>
                         <th>Type</th>
                         <th>Line</th>
@@ -185,7 +187,7 @@ const LexicalAnalysis: React.FC = () => {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="currentColor"
+                stroke="var(--text)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -211,7 +213,7 @@ const LexicalAnalysis: React.FC = () => {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="currentColor"
+                stroke="var(--text)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"

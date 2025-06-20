@@ -1,0 +1,196 @@
+[Frontend/]
+    .gitignore
+    get-file-structure.bat
+    get-file-structure.py
+    package-lock.json
+    package.json
+    README.md
+    tsconfig.json
+[public/]
+    index.html
+    manifest.json
+    robots.txt
+    [assets/]
+        abstract syntax tree visualization.mp4
+        all compilation stages.mp4
+        cpu visualization 2.mp4
+        cpu visualization.mp4
+        instruction scheduling visualization.mp4
+        instruction selection visualization.mp4
+        intermediate representation visualization.mp4
+        lexical analysis visualization.mp4
+        memory graphical visualization.mp4
+        parse tree visualization.mp4
+        registers visualization.mp4
+        [all compilation stages/]
+            all compilation stages.html
+            all compilation stages_config.xml
+            all compilation stages_embed.css
+            all compilation stages_player.html
+            all_compilation_stages_First_Frame.png
+            [scripts/]
+                config_xml.js
+                techsmith-smart-player.min.js
+            [skins/]
+                [remix/]
+                    techsmith-smart-player.min.css
+        [old/]
+            abstract syntax tree visualization.mp4
+            all compilation stages.mp4
+            instruction scheduling visualization.mp4
+            instruction selection visualization.mp4
+            intermediate representation visualization.mp4
+            lexical analysis visualization.mp4
+            memory graphical visualization.mp4
+            parse tree visualization.mp4
+            registers visualization.mp4
+    [images/]
+        favicon.ico
+        favicon.svg
+        H.ico
+[src/]
+    App.test.tsx
+    config.js
+    index.css
+    index.tsx
+    logo.svg
+    react-app-env.d.ts
+    reportWebVitals.ts
+    setupTests.ts
+    theme.ts
+    [app/]
+        [images/]
+            Empowering.png
+            Mission.png
+            Vision.png
+        [layout/]
+            App.tsx
+            Footer.css
+            Footer.tsx
+            Header.css
+            Header.tsx
+        [router/]
+            routes.tsx
+    [features/]
+        update_components.log
+        update_components.py
+        [about/]
+            AboutPage.css
+            AboutPage.tsx
+        [code-optimization/]
+            CodeOptimization.css
+            CodeOptimization.tsx
+        [compiler_info/]
+            CompilerInfo.css
+            CompilerInfo.tsx
+        [contact/]
+            ContactPage.css
+            ContactPage.tsx
+        [context/]
+            CompilationContext.tsx
+        [css/]
+            bootstrap.min.css
+            style.css
+        [errors/]
+            Errors.css
+            Errors.tsx
+        [explainations/]
+            all_files_contents.txt
+            get files contents.py
+            [AI_code_optimization_explaination/]
+                AICodeOptimizationExplaination.tsx
+            [compiler_working/]
+                CompilerWorking.tsx
+            [explore/]
+                Explore.css
+                Explore.tsx
+            [instruction_selection_explaination/]
+                InstructionSelectionExplaination.tsx
+            [intermediate_code_generation/]
+                IntermediateCodeGenerationExplaination.tsx
+            [intermediate_code_optimization_explaination/]
+                IntermediateCodeOptimizationExplaination.tsx
+            [lexical_analysis_explaination/]
+                LexicalAnalysisExplaination.tsx
+            [memory_analysis_explaination/]
+                MemoryAnalysisExplaination.tsx
+            [ocr_explaination/]
+                OCRExplaination.tsx
+            [register_allocation_explaination/]
+                RegisterAllocationExplaination.tsx
+            [register_scheduling_explaination/]
+                RegisterSchedulingExplaination.tsx
+            [semantic_analysis_explaination/]
+                SemanticAnalysisExplaination.tsx
+            [symbol_tables_explaination/]
+                SymbolTablesExplaination.tsx
+            [Syntax_analysis_explaination/]
+                SyntaxAnalysisExplaination.tsx
+        [home/]
+            HomePage.css
+            HomePage.tsx
+        [instrction_scheduling/]
+            InstructionScheduling.css
+            InstructionScheduling.tsx
+        [instruction_selection/]
+            InstructionSelection.css
+            InstructionSelection.tsx
+        [ir-optimization/]
+            IntermediateCodeOptimization.css
+            IntermediateCodeOptimization.tsx
+        [ir_generation/]
+            IntermediateCodeGeneration.css
+            IntermediateCodeGeneration.tsx
+        [lexical_analysis/]
+            LexicalAnalysis.css
+            LexicalAnaysis.tsx
+        [memory_visualization/]
+            MemoryVisualization.css
+            MemoryVisualization.tsx
+        [notes/]
+            Notes.css
+            Notes.tsx
+        [perfect_background/]
+            PerfectBackground.tsx
+        [register_allocation/]
+            RegisterAllocation.css
+            RegisterAllocation.tsx
+        [scrollButtons/]
+            ScrollButtons.css
+            ScrollButtons.tsx
+        [semantic_analysis/]
+            SemanticAnalysis.css
+            SemanticAnalysis.tsx
+        [services/]
+            Services.css
+            Services.tsx
+        [source_code/]
+            SourceCode.css
+            SourceCode.tsx
+        [symbol_table/]
+            SymbolTables.css
+            SymbolTables.tsx
+        [syntax_analysis/]
+            SyntaxAnalysis.css
+            SyntaxAnalysis.tsx
+        [visualization/]
+            [compilation_stages_page/]
+                CompilationStagesPage.css
+                CompilationStagesPage.tsx
+            [cpu_memory_visualization/]
+                CpuMemoryVisualization.css
+                CpuMemoryVisualization.tsx
+            [memory_graphical_visualization/]
+                MemoryGraphicalVisualization.css
+                MemoryGraphicalVisualization.tsx
+            [memory_page/]
+                MemoryPage.css
+                MemoryPage.tsx
+            [visualization_page/]
+                VisualizationPage.css
+                VisualizationPage.tsx
+        [why_hamsy/]
+            WhyHamsy.css
+            WhyHamsy.tsx
+    [types/]
+        particles.d.ts

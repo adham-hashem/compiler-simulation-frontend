@@ -1,22 +1,25 @@
-import React, { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import "../css/style.css";
-import Header from "../../app/layout/Header";
-import Footer from "../../app/layout/Footer";
-import Empowering from "../../app/images/Empowering.png";
-import Mission from "../../app/images/Mission.png";
-import Vision from "../../app/images/Vision.png";
-import ScrollButtons from "../scrollButtons/ScrollButtons";
-import "./HomePage.css";
+// src/features/home/HomePage.tsx
+import React, { useEffect, useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import '../css/style.css';
+import Header from '../../app/layout/Header';
+import Footer from '../../app/layout/Footer';
+import Empowering from '../../app/images/Empowering.png';
+import Mission from '../../app/images/Mission.png';
+import Vision from '../../app/images/Vision.png';
+import ScrollButtons from '../scrollButtons/ScrollButtons';
+import './HomePage.css';
+import { useTheme } from '../context/ThemeContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const HomePage: React.FC = () => {
-  const [typedText, setTypedText] = useState("");
+  const { theme } = useTheme();
+  const [typedText, setTypedText] = useState('');
   const [showVisualizerButtons, setShowVisualizerButtons] = useState(false);
-  const text = "Welcome To HAMSY Compiler";
+  const text = 'Welcome To HAMSY Compiler';
   const speed = 100;
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerHeight, setContainerHeight] = useState(0);
@@ -24,36 +27,31 @@ const HomePage: React.FC = () => {
   const buttonContainerRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<HTMLElement[]>([]);
 
-  // Team members data from document
   const teamMembers = [
-    { name: "Haneen Ahmed Deep Alhasan", program: "CS Student, System Analyst" },
-    { name: "Ammar Elsayed Elsayed Antar", program: "IT Student, UI Designer" },
-    { name: "Adham Hashem Mohamed Elbeshbeshy", program: "IT Student, Frontend Developer" },
-    { name: "Youssef Rafie Mohamed Elbosaty", program: "CS student, Backend Developer" },
-    { name: "Mariam Nashaat Badran Eid", program: "CS Student, Backend Developer" },
-    { name: "Salah Saad Salah Hafez", program: "CS Student, Application Tester" },
+    { name: 'Haneen Ahmed Deep Alhasan', program: 'CS Student, System Analyst' },
+    { name: 'Ammar Elsayed Elsayed Antar', program: 'IT Student, UI Designer' },
+    { name: 'Adham Hashem Mohamed Elbeshbeshy', program: 'IT Student, Frontend Developer' },
+    { name: 'Youssef Rafie Mohamed Elbosaty', program: 'CS student, Backend Developer' },
+    { name: 'Mariam Nashaat Badran Eid', program: 'CS Student, Backend Developer' },
+    { name: 'Salah Saad Salah Hafez', program: 'CS Student, Application Tester' },
   ];
-  const supervisor = "Dr. Heba Hamed El Hadidi";
+  const supervisor = 'Dr. Heba Hamed El Hadidi';
 
-  // Add refs to sections
   const addToSectionRefs = (el: HTMLElement | null) => {
     if (el && !sectionRefs.current.includes(el)) {
       sectionRefs.current.push(el);
     }
   };
 
-  // Ensure scroll to top on initial load
   useEffect(() => {
-    // Immediate scroll reset
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
-    window.scrollTo({ top: 0, behavior: "auto" });
+    window.scrollTo({ top: 0, behavior: 'auto' });
 
-    // Additional scroll reset after a short delay to handle rendering
     const timer = setTimeout(() => {
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
-      window.scrollTo({ top: 0, behavior: "auto" });
+      window.scrollTo({ top: 0, behavior: 'auto' });
     }, 100);
 
     return () => clearTimeout(timer);
@@ -66,8 +64,8 @@ const HomePage: React.FC = () => {
       }
     };
     updateHeight();
-    window.addEventListener("resize", updateHeight);
-    return () => window.removeEventListener("resize", updateHeight);
+    window.addEventListener('resize', updateHeight);
+    return () => window.removeEventListener('resize', updateHeight);
   }, []);
 
   useEffect(() => {
@@ -83,19 +81,17 @@ const HomePage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // Main content animation with Animate.css
     if (mainContentRef.current) {
       gsap.fromTo(
         mainContentRef.current,
         { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
+        { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }
       );
-      mainContentRef.current.classList.add("animate__animated", "animate__fadeInUp");
+      mainContentRef.current.classList.add('animate__animated', 'animate__fadeInUp');
     }
 
-    // Button animation
     if (buttonContainerRef.current) {
-      const buttons = buttonContainerRef.current.querySelectorAll(".btn-grad");
+      const buttons = buttonContainerRef.current.querySelectorAll('.btn-grad');
       if (buttons.length > 0) {
         gsap.fromTo(
           buttons,
@@ -105,26 +101,23 @@ const HomePage: React.FC = () => {
             y: 0,
             duration: 0.8,
             stagger: 0.2,
-            ease: "power2.out",
+            ease: 'power2.out',
             delay: 0.5,
           }
         );
         buttons.forEach((btn) => {
-          btn.classList.add("animate__animated", "animate__pulse", "animate__fast");
+          btn.classList.add('animate__animated', 'animate__pulse', 'animate__fast');
         });
       }
     }
 
-    // Section animations with Animate.css
     sectionRefs.current.forEach((section) => {
-      const img = section.querySelector("img");
-      const text = section.querySelectorAll("h2, p, .team-card");
-      const button = section.querySelector(".learn-more-button");
+      const img = section.querySelector('img');
+      const text = section.querySelectorAll('h2, p, .team-card');
+      const button = section.querySelector('.learn-more-button');
 
-      // Add Animate.css to section
-      section.classList.add("animate__animated", "animate__fadeIn");
+      section.classList.add('animate__animated', 'animate__fadeIn');
 
-      // Image parallax
       if (img) {
         gsap.fromTo(
           img,
@@ -133,19 +126,18 @@ const HomePage: React.FC = () => {
             y: 0,
             opacity: 1,
             duration: 1,
-            ease: "power2.out",
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: section,
-              start: "top 80%",
-              end: "bottom 20%",
+              start: 'top 80%',
+              end: 'bottom 20%',
               scrub: 1,
             },
           }
         );
-        img.classList.add("animate__animated", "animate__zoomIn");
+        img.classList.add('animate__animated', 'animate__zoomIn');
       }
 
-      // Text and team card animation
       if (text.length > 0) {
         gsap.fromTo(
           text,
@@ -155,19 +147,18 @@ const HomePage: React.FC = () => {
             x: 0,
             duration: 0.8,
             stagger: 0.2,
-            ease: "power2.out",
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: section,
-              start: "top 80%",
+              start: 'top 80%',
             },
           }
         );
         text.forEach((el) => {
-          el.classList.add("animate__animated", "animate__fadeInLeft");
+          el.classList.add('animate__animated', 'animate__fadeInLeft');
         });
       }
 
-      // Button animation
       if (button) {
         gsap.fromTo(
           button,
@@ -176,14 +167,14 @@ const HomePage: React.FC = () => {
             opacity: 1,
             scale: 1,
             duration: 0.6,
-            ease: "back.out(1.7)",
+            ease: 'back.out(1.7)',
             scrollTrigger: {
               trigger: section,
-              start: "top 80%",
+              start: 'top 80%',
             },
           }
         );
-        button.classList.add("animate__animated", "animate__bounceIn");
+        button.classList.add('animate__animated', 'animate__bounceIn');
       }
     });
 
@@ -197,9 +188,9 @@ const HomePage: React.FC = () => {
     setShowVisualizerButtons(!showVisualizerButtons);
     if (!showVisualizerButtons) {
       gsap.fromTo(
-        ".visualizer-buttons",
+        '.visualizer-buttons',
         { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+        { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }
       );
     }
   };
@@ -207,15 +198,15 @@ const HomePage: React.FC = () => {
   return (
     <>
       <Header />
-      <div ref={containerRef} className="main-background-color">
+      <div ref={containerRef} className={`main-background-color ${theme}`}>
         <div className="main-content" ref={mainContentRef}>
           <div className="main-content-h1-container">
             <h1 className="main-content-h1">
-              {typedText.split("HAMSY").map((part, i, arr) => (
+              {typedText.split('HAMSY').map((part, i, arr) => (
                 <React.Fragment key={i}>
                   {part}
                   {i < arr.length - 1 && (
-                    <span style={{ color: "#706CEE" }}>HAMSY</span>
+                    <span style={{ color: 'var(--primary)' }}>HAMSY</span>
                   )}
                 </React.Fragment>
               ))}
@@ -259,15 +250,15 @@ const HomePage: React.FC = () => {
           <section
             ref={addToSectionRefs}
             className="div-background-color empowering-section mb-2 mx-5 rounded-div"
-            style={{ padding: "80px 40px 40px 40px" }}
+            style={{ padding: '80px 40px 40px 40px' }}
           >
             <div className="row">
               <div className="col-md-6 mb-5">
-                <h2 className="text-white mb-5">
-                  Empowering Developers With A Seamless{" "}
-                  <span className="main-color">Compiler</span>
+                <h2 className="section-title">
+                  Empowering Developers With A Seamless{' '}
+                  <span style={{ color: 'var(--primary)' }}>Compiler</span>
                 </h2>
-                <p className="text-white mb-5">
+                <p>
                   We are a team of passionate developers, designers, and engineers
                   dedicated to building an intuitive and powerful online compiler.
                   Our mission is to empower programmers with a seamless coding
@@ -276,8 +267,8 @@ const HomePage: React.FC = () => {
                 </p>
                 <Link
                   to=""
-                  className="btn py-2 px-5 learn-more-button"
-                  style={{ border: "none" }}
+                  className="btn learn-more-button"
+                  style={{ border: 'none' }}
                 >
                   Learn More
                 </Link>
@@ -295,7 +286,7 @@ const HomePage: React.FC = () => {
           <section
             ref={addToSectionRefs}
             className="mb-2 mx-5"
-            style={{ padding: "80px 0 20px 0" }}
+            style={{ padding: '80px 0 20px 0' }}
           >
             <div className="row">
               <div className="col-md-6">
@@ -306,8 +297,8 @@ const HomePage: React.FC = () => {
                 />
               </div>
               <div className="col-md-6 mb-2">
-                <h2 className="text-white mb-3 mt-3">Our Mission</h2>
-                <p className="text-white mb-2">
+                <h2 className="section-title">Our Mission</h2>
+                <p>
                   To create an intuitive and powerful online compiler that
                   enhances coding efficiency, simplifies development, and empowers
                   programmers of all levels.
@@ -319,12 +310,12 @@ const HomePage: React.FC = () => {
           <section
             ref={addToSectionRefs}
             className="mb-2 mx-5 hide-on-mobile"
-            style={{ padding: "80px 0 30px 0" }}
+            style={{ padding: '80px 0 30px 0' }}
           >
             <div className="row">
               <div className="col-md-6 mb-5">
-                <h2 className="text-white mb-3 mt-3">Our Vision</h2>
-                <p className="text-white mb-5">
+                <h2 className="section-title">Our Vision</h2>
+                <p>
                   To revolutionize the coding experience by providing a seamless,
                   accessible, and innovative platform that fosters learning,
                   collaboration, and creativity in software development.
@@ -343,7 +334,7 @@ const HomePage: React.FC = () => {
           <section
             ref={addToSectionRefs}
             className="mb-2 mx-5 mobile-only"
-            style={{ padding: "20px 0 10px 0" }}
+            style={{ padding: '20px 0 10px 0' }}
           >
             <div className="row">
               <div className="col-md-6">
@@ -354,8 +345,8 @@ const HomePage: React.FC = () => {
                 />
               </div>
               <div className="col-md-6 mb-3">
-                <h2 className="text-white mb-3 mt-3">Our Vision</h2>
-                <p className="text-white mb-2">
+                <h2 className="section-title">Our Vision</h2>
+                <p>
                   To revolutionize the coding experience by providing a seamless,
                   accessible, and innovative platform that fosters learning,
                   collaboration, and creativity in software development.
@@ -367,11 +358,11 @@ const HomePage: React.FC = () => {
           <section
             ref={addToSectionRefs}
             className="mx-5"
-            style={{ padding: "20px 0 20px 0" }}
+            style={{ padding: '20px 0 20px 0' }}
           >
             <div className="row">
               <div className="col-md-12 mb-5">
-                <h2 className="text-white text-center mb-5">
+                <h2 className="section-title text-center">
                   Meet Our Team Members
                 </h2>
                 <div className="row">
@@ -379,17 +370,16 @@ const HomePage: React.FC = () => {
                     <div key={index} className="col-md-4 col-sm-6 mb-4">
                       <div
                         className="team-card text-center p-4 rounded shadow-lg"
-                        style={{ backgroundColor: "#282828", border: "1px solid #282828" }}
                       >
-                        <h5 className="text-white mb-2">{member.name}</h5>
+                        <h5>{member.name}</h5>
                         <p className="text-muted mb-0">{member.program}</p>
                       </div>
                     </div>
                   ))}
                 </div>
                 <div className="text-center mt-5">
-                  <h4 className="text-white mb-3">Supervised By</h4>
-                  <p className="text-white mb-0">{supervisor}</p>
+                  <h4>Supervised By</h4>
+                  <p className="mb-0">{supervisor}</p>
                 </div>
               </div>
             </div>

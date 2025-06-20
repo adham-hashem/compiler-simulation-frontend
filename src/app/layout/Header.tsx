@@ -1,16 +1,19 @@
-import { Link } from "react-router-dom";
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import "../../features/css/style.css";
-import "./Header.css";
+// src/app/layout/Header.tsx
+import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { gsap } from 'gsap';
+import '../../features/css/style.css';
+import './Header.css';
+import { useTheme } from '../../features/context/ThemeContext';
 
 function Header() {
+  const { theme, toggleTheme } = useTheme();
+
   const navbarRef = useRef<HTMLDivElement>(null);
   const navItemsRef = useRef<HTMLLIElement[]>([]);
   const brandRef = useRef<HTMLAnchorElement>(null);
   const contactButtonRef = useRef<HTMLAnchorElement>(null);
 
-  // Add refs to nav items
   const addToNavItemsRef = (el: HTMLLIElement | null) => {
     if (el && !navItemsRef.current.includes(el)) {
       navItemsRef.current.push(el);
@@ -23,11 +26,11 @@ function Header() {
       gsap.fromTo(
         brandRef.current,
         { opacity: 0, y: -20 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }
       );
     }
 
-    // Animate nav items with stagger
+    // Animate nav items
     if (navItemsRef.current.length > 0) {
       gsap.fromTo(
         navItemsRef.current,
@@ -37,7 +40,7 @@ function Header() {
           y: 0,
           duration: 0.8,
           stagger: 0.2,
-          ease: "power2.out",
+          ease: 'power2.out',
           delay: 0.3,
         }
       );
@@ -53,7 +56,7 @@ function Header() {
           scale: 1,
           y: 0,
           duration: 0.8,
-          ease: "back.out(1.7)",
+          ease: 'back.out(1.7)',
           delay: 0.5,
         }
       );
@@ -63,14 +66,10 @@ function Header() {
   return (
     <nav
       ref={navbarRef}
-      className="navbar navbar-expand-sm navbar-dark sticky-top"
+      className="navbar navbar-expand-sm sticky-top"
     >
       <div className="container-fluid">
-        <Link
-          ref={brandRef}
-          className="navbar-brand"
-          to="/"
-        >
+        <Link ref={brandRef} className="navbar-brand" to="/">
           <b>HAMSY</b>
         </Link>
         <button
@@ -112,7 +111,7 @@ function Header() {
               </Link>
             </li>
           </ul>
-          <div className="contact-button-container">
+          <div className="d-flex align-items-center gap-3">
             <Link
               ref={contactButtonRef}
               className="btn contact-us-button"
@@ -120,6 +119,12 @@ function Header() {
             >
               <i className="fas fa-envelope me-2"></i>Contact Us
             </Link>
+            <button
+              onClick={toggleTheme}
+              className="btn btn-outline"
+            >
+              Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
+            </button>
           </div>
         </div>
       </div>

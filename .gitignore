@@ -1,3 +1,5 @@
+.gitignore
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -27,3 +29,6 @@ update_components.py
 update_components.log
 get files contents.py
 all_files_contents.txt
+
+get-file-structure.bat
+get-file-structure.py

@@ -1,32 +1,30 @@
-@import "../../features/css/style.css";
+/* src/app/layout/Header.css */
+@import '../../features/css/style.css';
 
 .navbar {
-  background: linear-gradient(135deg, rgba(40, 40, 40, 0.95) 0%, rgba(60, 60, 60, 0.95) 100%);
+  background: var(--navbar-bg);
   backdrop-filter: blur(8px);
-  transition: background-color 0.3s ease;
+  transition: background 0.3s ease;
 }
 
 .navbar-brand {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 2rem;
-  background: linear-gradient(45deg, #706CEE, #6474ED);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--primary);
   transition: transform 0.3s ease, text-shadow 0.3s ease;
   position: relative;
 }
 
 .navbar-brand:hover {
   transform: scale(1.05);
-  text-shadow: 0 0 10px rgba(51, 109, 233, 0.603);
+  text-shadow: 0 0 10px rgba(112, 108, 238, 0.6);
 }
 
 .nav-link {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 1.1rem;
-  color: #ffffff !important;
+  color: var(--text) !important;
   padding: 0.5rem 1.5rem !important;
   position: relative;
   transition: color 0.3s ease, transform 0.3s ease;
@@ -39,7 +37,7 @@
   height: 2px;
   bottom: 0;
   left: 50%;
-  background: linear-gradient(45deg, #706CEE, #00b7eb);
+  background: var(--primary);
   transition: width 0.3s ease, left 0.3s ease;
 }
 
@@ -49,22 +47,17 @@
 }
 
 .nav-link:hover {
-  color: #00b7eb !important;
+  color: var(--accent) !important;
   transform: translateY(-2px);
 }
 
-.contact-button-container {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .contact-us-button {
-  background: linear-gradient(45deg, #706CEE 0%, #4b47e6 100%);
-  color: #ffffff;
+  background: var(--primary);
+  color: var(--text);
   padding: 0.7rem 2rem;
   border-radius: 50px;
   border: none;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: 1rem;
   text-transform: uppercase;
@@ -76,9 +69,9 @@
 }
 
 .contact-us-button:hover {
-  background: linear-gradient(45deg, #00b7eb 0%, #706CEE 100%);
+  background: var(--accent);
   transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(0, 183, 235, 0.6);
+  box-shadow: 0 6px 20px rgba(112, 108, 238, 0.6);
 }
 
 .contact-us-button i {
@@ -89,8 +82,26 @@
   transform: scale(1.2);
 }
 
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.7rem 1.5rem;
+  border-radius: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: var(--accent);
+  color: var(--text);
+  transform: scale(1.05);
+}
+
 .navbar-toggler {
-  border-color: #706CEE !important;
+  border-color: var(--primary) !important;
 }
 
 .navbar-toggler-icon {
@@ -107,15 +118,16 @@
     margin-bottom: 1rem;
   }
 
-  .contact-button-container {
-    justify-content: center;
-  }
-
   .contact-us-button {
     padding: 0.6rem 1.5rem;
     font-size: 0.95rem;
     margin: 0.5rem auto;
     display: inline-flex;
+  }
+
+  .btn-outline {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
   }
 
   .nav-link {
@@ -130,6 +142,11 @@
 
 @media (max-width: 576px) {
   .contact-us-button {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .btn-outline {
     padding: 0.5rem 1.2rem;
     font-size: 0.9rem;
   }

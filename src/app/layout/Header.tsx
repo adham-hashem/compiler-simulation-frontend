@@ -1,4 +1,3 @@
-// src/app/layout/Header.tsx
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
@@ -13,6 +12,7 @@ function Header() {
   const navItemsRef = useRef<HTMLLIElement[]>([]);
   const brandRef = useRef<HTMLAnchorElement>(null);
   const contactButtonRef = useRef<HTMLAnchorElement>(null);
+  const themeToggleRef = useRef<HTMLButtonElement>(null);
 
   const addToNavItemsRef = (el: HTMLLIElement | null) => {
     if (el && !navItemsRef.current.includes(el)) {
@@ -58,6 +58,22 @@ function Header() {
           duration: 0.8,
           ease: 'back.out(1.7)',
           delay: 0.5,
+        }
+      );
+    }
+
+    // Animate theme toggle icon
+    if (themeToggleRef.current) {
+      gsap.fromTo(
+        themeToggleRef.current,
+        { opacity: 0, scale: 0.8, y: 10 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'back.out(1.7)',
+          delay: 0.6,
         }
       );
     }
@@ -120,10 +136,12 @@ function Header() {
               <i className="fas fa-envelope me-2"></i>Contact Us
             </Link>
             <button
+              ref={themeToggleRef}
               onClick={toggleTheme}
-              className="btn btn-outline"
+              className="btn theme-toggle-button"
+              aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
             >
-              Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
+              <i className={`fas ${theme === 'light' ? 'fa-moon' : 'fa-sun'}`} />
             </button>
           </div>
         </div>

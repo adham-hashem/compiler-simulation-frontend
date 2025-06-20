@@ -1,117 +1,130 @@
+/* src/features/symbol_tables/SymbolTables.css */
+@import "../../features/css/style.css";
+
 .symbol-tables-container {
-    min-height: 100vh;
-    padding: 20px;
-    width: 100%;
-    max-width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+  color: var(--text);
+}
+
+/* Table Container */
+.table-container {
+  background-color: var(--card-background);
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 8px;
+}
+
+/* Symbol Table */
+.symbol-table {
+  background: var(--card-background);
+  border-radius: 10px;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.symbol-table th,
+.symbol-table td {
+  border: 1px solid var(--border);
+  color: var(--code-text); /* White text for table content */
+  text-align: left;
+  padding: 8px;
+}
+
+.symbol-table th {
+  background: var(--secondary); /* Use secondary color for header background */
+}
+
+.symbol-table th:first-child {
+  border-top-left-radius: 10px;
+}
+
+.symbol-table th:last-child {
+  border-top-right-radius: 10px;
+}
+
+.symbol-table tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+.symbol-table tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}
+
+.symbol-table .text-center {
+  text-align: center;
+  color: var(--code-text);
+}
+
+/* Arrow Buttons */
+.arrow-button {
+  background-color: var(--primary);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.arrow-button svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--text);
+  transition: stroke 0.3s ease;
+}
+
+.arrow-button:hover {
+  background-color: var(--accent);
+  transform: scale(1.1);
+}
+
+.arrow-button:hover svg {
+  stroke: var(--text);
+}
+
+.arrow-button:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Errors Section */
+.errors-section {
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* Responsive Design (below 768px) */
+@media (max-width: 768px) {
+  .symbol-tables-container {
+    padding: 10px;
   }
-  
-  /* Table Container */
+
   .table-container {
-    background-color: #282828;
-    overflow-x: auto;
-    border: 1px solid #282828;
-    border-radius: 10px;
-    padding: 16px;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
   }
-  
-  /* Symbol Table */
+
   .symbol-table {
-    background: #1A1A1A;
-    border-radius: 10px;
-    border-collapse: separate;
-    border-spacing: 0;
-    width: 100%;
+    font-size: 14px;
   }
-  
-  .symbol-table th,
-  .symbol-table td {
-    border: 1px solid #444;
-    color: white;
-    text-align: left;
-    padding: 8px;
-  }
-  
-  .symbol-table th {
-    background: #616161;
-  }
-  
-  .symbol-table th:first-child {
-    border-top-left-radius: 10px;
-  }
-  
-  .symbol-table th:last-child {
-    border-top-right-radius: 10px;
-  }
-  
-  .symbol-table tr:last-child td:first-child {
-    border-bottom-left-radius: 10px;
-  }
-  
-  .symbol-table tr:last-child td:last-child {
-    border-bottom-right-radius: 10px;
-  }
-  
-  .symbol-table .text-center {
-    text-align: center;
-    color: white;
-  }
-  
-  /* Arrow Buttons */
+
   .arrow-button {
-    background-color: #706CEE; /* Blue background matching LexicalAnalysis */
-    border-radius: 50%; /* Circular buttons */
-    width: 48px;
-    height: 48px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 40px;
+    height: 40px;
   }
-  
+
   .arrow-button svg {
-    width: 24px;
-    height: 24px;
-    stroke: #fff; /* White arrow */
-    transition: stroke 0.3s ease;
+    width: 20px;
+    height: 20px;
   }
-  
-  .arrow-button:hover {
-    background-color: #5954ED; /* Darker blue on hover */
-    transform: scale(1.1);
-  }
-  
-  .arrow-button:hover svg {
-    stroke: #fff; /* Keep white on hover */
-  }
-  
-  .arrow-button:focus {
-    outline: 2px solid #5954ED; /* Focus ring for accessibility */
-    outline-offset: 2px;
-  }
-  
-  /* Responsive Design (below 768px) */
-  @media (max-width: 768px) {
-    .symbol-tables-container {
-      padding: 10px;
-    }
-  
-    .table-container {
-      margin-bottom: 16px;
-    }
-  
-    .symbol-table {
-      font-size: 14px;
-    }
-  
-    .arrow-button {
-      width: 40px;
-      height: 40px;
-    }
-  
-    .arrow-button svg {
-      width: 20px;
-      height: 20px;
-    }
-  }
+}

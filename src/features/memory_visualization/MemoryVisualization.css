@@ -1,10 +1,11 @@
-/* MemoryVisualization.css */
+/* src/features/memory_visualization/MemoryVisualization.css */
+@import "../../features/css/style.css";
 
 .mem-vis-container {
   min-height: 100vh;
   padding: 20px;
-  width: 100%;
-  max-width: 100%;
+  background: var(--background);
+  color: var(--text);
   display: flex;
   flex-direction: column;
 }
@@ -13,11 +14,25 @@
   margin-bottom: 20px;
 }
 
-/* Split Container (Desktop) */
+.step-navigation .btn-outline {
+  border-color: var(--border);
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.step-navigation .btn-outline:hover {
+  background: var(--accent);
+  color: var(--text);
+}
+
+.step-navigation span {
+  color: var(--text);
+}
+
 .split-container {
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 180px); /* Adjusted for step navigation */
+  height: calc(100vh - 180px);
   position: relative;
   width: 100%;
   margin: 0 auto 10px auto;
@@ -30,40 +45,39 @@
 
 .stack-content,
 .heap-content {
-  background-color: #222;
   height: 100%;
   width: 100%;
-  border-radius: 10px;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+
+.stack-content h3,
+.heap-content h3 {
+  color: var(--text);
+  margin-bottom: 1rem;
 }
 
 .stack-wrapper,
 .heap-wrapper {
-  flex: 1; /* Expand to fill available space */
+  flex: 1;
   overflow-y: auto;
   overflow-x: auto;
-  width: 100%;
-  background-color: #000000;
-  border: 1px solid #282828;
-  padding: 10px; /* Add padding inside the wrapper */
+  background: var(--code-background);
+  border: 1px solid var(--border);
+  padding: 10px;
 }
 
-.stack-wrapper {
-  border-radius: 10px; /* Full rounding for left section */
-}
-
-.heap-wrapper {
-  border-top-left-radius: 10px; /* Top-left corner */
-  border-bottom-left-radius: 10px; /* Bottom-left corner */
-  border-top-right-radius: 0; /* Ensure top-right is square */
-  border-bottom-right-radius: 0; /* Ensure bottom-right is square */
+.stack-wrapper pre,
+.heap-wrapper pre {
+  color: var(--code-text);
+  white-space: pre-wrap;
+  margin: 0;
 }
 
 .drag-handle {
   width: 10px;
-  background-color: #444;
+  background: var(--border);
   cursor: col-resize;
   position: absolute;
   top: 0;
@@ -74,45 +88,48 @@
 }
 
 .text-warning {
-  color: #ff9900;
+  color: var(--warning);
   text-align: center;
   margin: 10px 0;
 }
 
-/* Errors Section */
 .errors-section {
   margin-top: 10px;
   width: 100%;
 }
 
-/* Mobile Layout (below 768px) */
+.prevButton,
+.nextButton {
+  background: var(--primary);
+  color: var(--text);
+  padding: 0.5rem 2rem;
+  border-radius: 25px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.prevButton:hover,
+.nextButton:hover {
+  background: var(--accent);
+  transform: scale(1.05);
+}
+
 @media (max-width: 768px) {
   .split-container {
     flex-direction: column;
     height: auto;
-    width: 100%;
     margin-bottom: 7px;
   }
 
   .stack-section,
   .heap-section {
     width: 100% !important;
-    padding: 0;
     margin-bottom: 20px;
-  }
-
-  .stack-content,
-  .heap-content {
-    width: 100%;
   }
 
   .stack-wrapper,
   .heap-wrapper {
-    height: 400px; /* Fixed height for mobile, matching previous components */
-    width: 100%;
-    overflow-y: auto; /* Explicitly enable vertical scroll */
-    overflow-x: auto; /* Explicitly enable horizontal scroll */
-    flex: none; /* Prevent flex: 1 from overriding height */
+    height: 400px;
+    flex: none;
   }
 
   .drag-handle {

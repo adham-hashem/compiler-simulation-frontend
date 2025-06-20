@@ -8,6 +8,7 @@ import Footer from "../../app/layout/Footer";
 import Errors from "../errors/Errors";
 import Notes from "../notes/Notes";
 import { useCompilation } from "../context/CompilationContext";
+import { useTheme } from "../context/ThemeContext";
 import ScrollButtons from "../scrollButtons/ScrollButtons";
 import { API_BASE_URL } from '../../config';
 
@@ -34,6 +35,7 @@ interface Token {
 
 const SyntaxAnalysis: React.FC = () => {
   const { code, tokens, parseTree, setParseTree, setTokens } = useCompilation();
+  const { theme } = useTheme();
   const svgRef = useRef<SVGSVGElement | null>(null);
   const [errors, setErrors] = useState<string[]>([]);
   const [notes] = useState<string[]>([
@@ -192,7 +194,7 @@ const SyntaxAnalysis: React.FC = () => {
     const svg = d3.select(svgRef.current);
 
     svg.selectAll("*").remove();
-    svg.style("background", "black");
+    svg.style("background", "var(--card-background)");
 
     const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
 
@@ -233,7 +235,7 @@ const SyntaxAnalysis: React.FC = () => {
                 ${parentX},${parentY}`;
       })
       .attr("fill", "none")
-      .attr("stroke", "white")
+      .attr("stroke", "var(--text)")
       .attr("stroke-width", 2);
 
     const node = g
@@ -247,8 +249,8 @@ const SyntaxAnalysis: React.FC = () => {
     node
       .append("circle")
       .attr("r", 12)
-      .attr("fill", "#222")
-      .attr("stroke", "white")
+      .attr("fill", "var(--card-background)")
+      .attr("stroke", "var(--text)")
       .attr("stroke-width", 2);
 
     node
@@ -256,7 +258,7 @@ const SyntaxAnalysis: React.FC = () => {
       .attr("dy", ".35em")
       .attr("y", (d) => (d.children ? -20 : 20))
       .style("text-anchor", "middle")
-      .style("fill", "white")
+      .style("fill", "var(--text)")
       .style("font-size", "14px")
       .text((d) => d.data.name);
   }, [parseTree]);
@@ -289,17 +291,17 @@ const SyntaxAnalysis: React.FC = () => {
   return (
     <>
       <Header />
-      <div ref={containerRef} className="container-fluid text-white main-background-color syntax-container">
-        <h2 className="mb-3 text-white text-center">Syntax Analysis</h2>
+      <div ref={containerRef} className={`container-fluid main-background-color syntax-container ${theme}`}>
+        <h2 className="mb-3 text-center">Syntax Analysis</h2>
 
         <div className="split-container">
           <div className="tokens-section" style={{ width: `calc(${tokensWidth}% - 5px)` }}>
             <div className="p-3 rounded-div tokens-content">
-              <h3 className="text-white">Tokens</h3>
+              <h3>Tokens</h3>
               <div className="tokens-table-wrapper">
                 <table className="table table-bordered tokens-table">
                   <thead>
-                    <tr style={{ background: "#616161", color: "white" }}>
+                    <tr>
                       <th style={{ borderTopLeftRadius: "10px" }}>Lexeme</th>
                       <th>Type</th>
                       <th>Line</th>
@@ -338,7 +340,7 @@ const SyntaxAnalysis: React.FC = () => {
 
           <div className="tree-section" style={{ width: `calc(${100 - tokensWidth}% - 5px)` }}>
             <div className="p-3 rounded-div tree-content">
-              <h3 className="text-white">Parse Tree</h3>
+              <h3>Parse Tree</h3>
               {loading ? (
                 <p className="text-warning">Fetching parse tree...</p>
               ) : parseTree ? (
@@ -350,7 +352,7 @@ const SyntaxAnalysis: React.FC = () => {
               )}
               <div className="text-center mt-2 download-button-wrapper">
                 <button
-                  className="btn btn-sm btn-outline-light"
+                  className="btn btn-sm btn-outline"
                   onClick={() => downloadSVG("svg")}
                   disabled={!parseTree}
                 >
@@ -381,7 +383,7 @@ const SyntaxAnalysis: React.FC = () => {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="currentColor"
+                stroke="var(--text)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -407,7 +409,7 @@ const SyntaxAnalysis: React.FC = () => {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="currentColor"
+                stroke="var(--text)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"

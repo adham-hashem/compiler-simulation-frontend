@@ -1,3 +1,6 @@
+/* src/features/semantic_analysis/SemanticAnalysis.css */
+@import "../css/style.css";
+
 .semantic-container {
   min-height: 100vh;
   padding: 20px;
@@ -5,13 +8,15 @@
   max-width: 100%;
   display: flex;
   flex-direction: column;
+  background: var(--background);
+  color: var(--text);
 }
 
 /* Split Container (Desktop) */
 .split-container {
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 140px); /* Matches SyntaxAnalysis */
+  height: calc(100vh - 140px);
   position: relative;
   width: 100%;
   margin: 0 auto 10px auto;
@@ -24,27 +29,28 @@
 
 .parse-tree-content,
 .ast-content {
-  background-color: #222;
+  background-color: var(--card-background);
   height: 100%;
   width: 100%;
   border-radius: 10px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  border: 1px solid var(--border);
 }
 
 .tree-wrapper {
-  flex: 1; /* Expand to fill available space */
+  flex: 1;
   overflow-y: auto;
   overflow-x: auto;
   width: 100%;
 }
 
 .ast-section .tree-wrapper {
-  border-top-left-radius: 10px; /* Top-left corner */
-  border-bottom-left-radius: 10px; /* Bottom-left corner */
-  border-top-right-radius: 0; /* Ensure top-right is square */
-  border-bottom-right-radius: 0; /* Ensure bottom-right is square */
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .download-button-wrapper {
@@ -54,7 +60,7 @@
 
 .drag-handle {
   width: 10px;
-  background-color: #444;
+  background-color: var(--border);
   cursor: col-resize;
   position: absolute;
   top: 0;
@@ -65,15 +71,15 @@
 }
 
 .text-warning {
-  color: #ff9900;
+  color: var(--warning);
   text-align: center;
   margin: 10px 0;
 }
 
 /* Arrow Buttons */
 .arrow-button {
-  background-color: #706CEE; /* Blue background matching LexicalAnalysis */
-  border-radius: 50%; /* Circular buttons */
+  background-color: var(--primary);
+  border-radius: 50%;
   width: 48px;
   height: 48px;
   display: inline-flex;
@@ -86,21 +92,21 @@
 .arrow-button svg {
   width: 24px;
   height: 24px;
-  stroke: #fff; /* White arrow */
+  stroke: var(--text);
   transition: stroke 0.3s ease;
 }
 
 .arrow-button:hover {
-  background-color: #5954ED; /* Darker blue on hover */
+  background-color: var(--accent);
   transform: scale(1.1);
 }
 
 .arrow-button:hover svg {
-  stroke: #fff; /* Keep white on hover */
+  stroke: var(--text);
 }
 
 .arrow-button:focus {
-  outline: 2px solid #5954ED; /* Focus ring for accessibility */
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -112,22 +118,23 @@
 
 /* D3 Styles */
 .node circle {
-  fill: #fff;
-  stroke: steelblue;
+  fill: var(--card-background);
+  stroke: var(--primary);
   stroke-width: 3px;
 }
 
 .node text {
   font: 12px sans-serif;
+  fill: var(--text);
 }
 
 .node--internal text {
-  text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
+  text-shadow: 0 1px 0 var(--background), 0 -1px 0 var(--background), 1px 0 0 var(--background), -1px 0 0 var(--background);
 }
 
 .link {
   fill: none;
-  stroke: #ccc;
+  stroke: var(--border);
   stroke-width: 2px;
 }
 
@@ -153,11 +160,11 @@
   }
 
   .tree-wrapper {
-    height: 425px; /* Fixed height for mobile */
+    height: 425px;
     width: 100%;
-    overflow-y: auto; /* Explicitly enable vertical scroll */
-    overflow-x: auto; /* Explicitly enable horizontal scroll */
-    flex: none; /* Prevent flex: 1 override */
+    overflow-y: auto;
+    overflow-x: auto;
+    flex: none;
   }
 
   .drag-handle {

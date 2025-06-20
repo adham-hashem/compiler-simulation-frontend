@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import { Link } from "react-router-dom";
-import "../../features/css/style.css";
+import "../css/style.css";
 import "./SemanticAnalysis.css";
 import Header from "../../app/layout/Header";
 import Footer from "../../app/layout/Footer";
 import Errors from "../errors/Errors";
 import Notes from "../notes/Notes";
 import { useCompilation } from "../context/CompilationContext";
+import { useTheme } from "../context/ThemeContext";
 import ScrollButtons from "../scrollButtons/ScrollButtons";
 import { API_BASE_URL } from '../../config';
 
@@ -27,6 +28,7 @@ interface D3TreeNode {
 
 const SemanticAnalysis: React.FC = () => {
   const { code, tokens, parseTree, setParseTree, abstractSyntaxTree, setAbstractSyntaxTree } = useCompilation();
+  const { theme } = useTheme();
   const parseTreeSvgRef = useRef<SVGSVGElement | null>(null);
   const abstractSyntaxTreeSvgRef = useRef<SVGSVGElement | null>(null);
   const [errors, setErrors] = useState<string[]>([]);
@@ -105,7 +107,7 @@ const SemanticAnalysis: React.FC = () => {
     const margin = { top: 50, right: 50, bottom: 50, left: 50 };
     d3.select(svgRef.current).selectAll("*").remove();
 
-    const svg = d3.select(svgRef.current).style("background", "black");
+    const svg = d3.select(svgRef.current).style("background", "var(--card-background)");
     const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
 
     const d3TreeData = transformToD3TreeNode(treeData);
@@ -144,7 +146,7 @@ const SemanticAnalysis: React.FC = () => {
                 ${parentX},${parentY}`;
       })
       .attr("fill", "none")
-      .attr("stroke", "white")
+      .attr("stroke", "var(--text)")
       .attr("stroke-width", 2);
 
     const node = g
@@ -158,8 +160,8 @@ const SemanticAnalysis: React.FC = () => {
     node
       .append("circle")
       .attr("r", 12)
-      .attr("fill", "#222")
-      .attr("stroke", "white")
+      .attr("fill", "var(--card-background)")
+      .attr("stroke", "var(--text)")
       .attr("stroke-width", 2);
 
     node
@@ -167,7 +169,7 @@ const SemanticAnalysis: React.FC = () => {
       .attr("dy", ".35em")
       .attr("y", (d) => (d.children ? -20 : 20))
       .style("text-anchor", "middle")
-      .style("fill", "white")
+      .style("fill", "var(--text)")
       .style("font-size", "14px")
       .text((d) => d.data.name);
   };
@@ -224,14 +226,14 @@ const SemanticAnalysis: React.FC = () => {
   return (
     <>
       <Header />
-      <div ref={containerRef} className="container-fluid text-white main-background-color semantic-container">
-        <h2 className="mb-3 text-white text-center">Semantic Analysis</h2>
+      <div ref={containerRef} className={`container-fluid main-background-color semantic-container ${theme}`}>
+        <h2 className="mb-3 text-center">Semantic Analysis</h2>
 
         <div className="split-container">
           {/* Parse Tree Section */}
           <div className="parse-tree-section" style={{ width: `calc(${parseTreeWidth}% - 5px)` }}>
             <div className="p-3 rounded-div parse-tree-content">
-              <h3 className="text-white">Parse Tree</h3>
+              <h3>Parse Tree</h3>
               {parseTree ? (
                 <div className="tree-wrapper">
                   <svg ref={parseTreeSvgRef}></svg>
@@ -242,7 +244,7 @@ const SemanticAnalysis: React.FC = () => {
               <div className="text-center mt-2 download-button-wrapper">
                 <button
                   onClick={() => downloadSVG(parseTreeSvgRef, "parse_tree.svg")}
-                  className="btn btn-sm btn-outline-light"
+                  className="btn btn-sm btn-primary"
                   disabled={!parseTree}
                 >
                   Download SVG
@@ -262,7 +264,7 @@ const SemanticAnalysis: React.FC = () => {
           {/* Abstract Syntax Tree Section */}
           <div className="ast-section" style={{ width: `calc(${100 - parseTreeWidth}% - 5px)` }}>
             <div className="p-3 rounded-div ast-content">
-              <h3 className="text-white">Abstract Syntax Tree</h3>
+              <h3>Abstract Syntax Tree</h3>
               {loading ? (
                 <p className="text-warning">Fetching abstract syntax tree...</p>
               ) : abstractSyntaxTree ? (
@@ -275,7 +277,7 @@ const SemanticAnalysis: React.FC = () => {
               <div className="text-center mt-2 download-button-wrapper">
                 <button
                   onClick={() => downloadSVG(abstractSyntaxTreeSvgRef, "abstract_syntax_tree.svg")}
-                  className="btn btn-sm btn-outline-light"
+                  className="btn btn-sm btn-primary"
                   disabled={!abstractSyntaxTree}
                 >
                   Download SVG
@@ -306,7 +308,7 @@ const SemanticAnalysis: React.FC = () => {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="currentColor"
+                stroke="var(--text)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -332,7 +334,7 @@ const SemanticAnalysis: React.FC = () => {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="currentColor"
+                stroke="var(--text)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"

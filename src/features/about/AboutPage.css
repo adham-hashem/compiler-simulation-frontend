@@ -1,93 +1,32 @@
-/* src/features/about/AboutPage.css */
-@import "../../features/css/style.css";
-
-.about-container {
-  min-height: 100vh;
-  padding: 20px 40px;
-  background: var(--background);
-  color: var(--text);
-}
-
-.about-section {
-  margin-bottom: 40px;
-}
-
-.section-heading {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: var(--text);
-  transition: color 0.3s ease;
-}
-
-.section-heading:hover {
-  color: var(--primary);
-}
-
-.section-heading i {
-  color: var(--primary);
-  transition: transform 0.3s ease;
-}
-
-.section-heading i:hover {
-  transform: scale(1.2);
-}
-
-.section-content {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: var(--text);
-  transition: opacity 0.3s ease;
-}
-
-.section-content:hover {
-  opacity: 0.8;
-}
-
-.list-unstyled {
-  margin-left: 1.5rem;
-}
-
 .list-unstyled li {
-  margin-bottom: 0.5rem;
-  transition: transform 0.3s ease, color 0.3s ease;
-  color: var(--text);
-}
-
-.list-unstyled li:hover {
-  transform: translateX(10px);
-  color: var(--primary);
-}
-
-.list-unstyled li i {
-  color: var(--primary);
-  margin-right: 0.5rem;
-  transition: transform 0.3s ease;
-}
-
-.list-unstyled li:hover i {
-  transform: scale(1.2);
-}
-
-.quote {
-  font-style: italic;
-  color: var(--text);
-}
-
-@media (max-width: 768px) {
-  .about-container {
-    padding: 15px 20px;
+    transition: transform 0.3s ease, color 0.3s ease;
   }
-
-  .section-heading {
-    font-size: 1.8rem;
+  
+  .list-unstyled li:hover {
+    transform: translateX(10px);
+    color: #706CEE;
   }
-
-  .section-content {
-    font-size: 1rem;
+  
+  section h2 {
+    transition: color 0.3s ease;
   }
-
-  .list-unstyled {
-    margin-left: 1rem;
+  
+  section h2:hover {
+    color: #706CEE;
   }
-}
+  
+  section p:not(:last-child) {
+    transition: opacity 0.3s ease;
+  }
+  
+  section p:hover {
+    opacity: 0.8;
+  }
+  
+  .fas, .fab {
+    transition: transform 0.3s ease;
+  }
+  
+  .fas:hover, .fab:hover {
+    transform: scale(1.2);
+  }

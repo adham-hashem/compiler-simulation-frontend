@@ -1,26 +1,24 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import "../../features/css/style.css";
-import "./SymbolTables.css";
 import Header from "../../app/layout/Header";
 import Footer from "../../app/layout/Footer";
 import Errors from "../errors/Errors";
 import Notes from "../notes/Notes";
 import { useCompilation } from "../context/CompilationContext";
-import { useTheme } from "../context/ThemeContext";
 import ScrollButtons from "../scrollButtons/ScrollButtons";
+import "./SymbolTables.css";
 import { API_BASE_URL } from '../../config';
 
+// Assuming ParseTreeNode is defined elsewhere; adjust as needed
 interface ParseTreeNode {
   type: string;
   value?: string;
   children?: ParseTreeNode[];
-  [key: string]: any;
+  [key: string]: any; // For flexibility if additional properties exist
 }
 
 const SymbolTables: React.FC = () => {
   const { parseTree, tokens, code, setSymbolTables, symbolTables } = useCompilation();
-  const { theme } = useTheme();
   const [errors, setErrors] = useState<string[]>([]);
   const [notes, setNotes] = useState<string[]>([
     "This is not a compilation phase, instead the symbol table is created and used by all phases, but we are showing it as a separate phase for more clarification",
@@ -31,15 +29,17 @@ const SymbolTables: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerHeight, setContainerHeight] = useState(0);
 
+  // Scroll to top on mount
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  // Measure container height on mount, resize, and content change
   const updateHeight = () => {
     if (containerRef.current) {
       const height = containerRef.current.scrollHeight;
       setContainerHeight(height);
-      console.log("Updated Container Height:", height);
+      console.log("Updated Container Height:", height); // Debug height
     }
   };
 
@@ -49,6 +49,7 @@ const SymbolTables: React.FC = () => {
     return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
+  // Fetch Symbol Tables from API using parseTree
   useEffect(() => {
     const fetchSymbolTables = async () => {
       console.log("ParseTree from context:", parseTree);
@@ -58,7 +59,8 @@ const SymbolTables: React.FC = () => {
         return;
       }
 
-      const storageKey = `symbolTables_${btoa(JSON.stringify(parseTree))}`;
+      // Generate a unique key based on parseTree
+      const storageKey = `symbolTables_${btoa(JSON.stringify(parseTree))}`; // Convert object to string then encode
       const storedSymbolTables = localStorage.getItem(storageKey);
 
       if (storedSymbolTables) {
@@ -68,7 +70,7 @@ const SymbolTables: React.FC = () => {
           setSymbolTables(parsedTables);
           setErrors([]);
           console.log("Using cached symbol tables from local storage");
-          return;
+          return; // Skip API fetch if valid data is found
         }
       }
 
@@ -102,7 +104,7 @@ const SymbolTables: React.FC = () => {
           setSymbolTables(null);
         } else {
           setSymbolTables(tables);
-          localStorage.setItem(storageKey, JSON.stringify(tables));
+          localStorage.setItem(storageKey, JSON.stringify(tables)); // Store in local storage
           console.log("Symbol Tables Fetched and Stored:", tables);
         }
         setErrors(data.errors || []);
@@ -112,17 +114,19 @@ const SymbolTables: React.FC = () => {
         setSymbolTables(null);
       } finally {
         setLoading(false);
-        updateHeight();
+        updateHeight(); // Re-calculate height after content loads
       }
     };
 
     fetchSymbolTables();
   }, [parseTree, setSymbolTables]);
 
+  // Re-calculate height when symbolTables changes
   useEffect(() => {
     updateHeight();
   }, [symbolTables]);
 
+  // Group symbol tables into pairs
   const groupedTables = [];
   if (symbolTables) {
     for (let i = 0; i < symbolTables.length; i += 2) {
@@ -135,10 +139,11 @@ const SymbolTables: React.FC = () => {
       <Header />
       <div
         ref={containerRef}
-        className={`container-fluid main-background-color symbol-tables-container ${theme}`}
+        className="container-fluid text-white main-background-color symbol-tables-container"
       >
-        <h2 className="text-center mb-3">Symbol Tables</h2>
+        <h2 className="text-center text-white mb-3">Symbol Tables</h2>
 
+        {/* Symbol Tables */}
         {loading ? (
           <p className="text-center text-warning">Fetching symbol tables...</p>
         ) : symbolTables && symbolTables.length > 0 ? (
@@ -147,7 +152,7 @@ const SymbolTables: React.FC = () => {
               {tablePair.map((table, index) => (
                 <div className="col-md-6" key={index}>
                   <div className="table-container">
-                    <h3>Scope: {table.scope}</h3>
+                    <h3 className="text-white">Scope: {table.scope}</h3>
                     <table className="table table-bordered symbol-table">
                       <thead>
                         <tr>
@@ -178,9 +183,10 @@ const SymbolTables: React.FC = () => {
             </div>
           ))
         ) : (
-          <p className="text-center text-warning">No symbol tables available.</p>
+          <p className="text-center">No symbol tables available.</p>
         )}
 
+        {/* Navigation Buttons */}
         <div className="row mx-0 mt-3 d-flex justify-content-center align-items-center">
           <div className="col text-center">
             <Link
@@ -201,7 +207,7 @@ const SymbolTables: React.FC = () => {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="var(--text)"
+                stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -227,7 +233,7 @@ const SymbolTables: React.FC = () => {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="var(--text)"
+                stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -238,12 +244,13 @@ const SymbolTables: React.FC = () => {
           </div>
         </div>
 
-        <div className="errors-section">
-          <Errors errors={errors} />
-        </div>
+        {/* Errors Section */}
+        <Errors errors={errors} />
 
+        {/* Notes Section */}
         <Notes notes={notes} />
 
+        {/* Add Scroll Buttons */}
         <ScrollButtons containerHeight={containerHeight} />
       </div>
       <Footer />

@@ -1,5 +1,3 @@
-@import "../css/style.css";
-
 .ir-container {
   min-height: 100vh;
   padding: 20px;
@@ -7,15 +5,13 @@
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  background: var(--background);
-  color: var(--text);
 }
 
 /* Split Container (Desktop) */
 .split-container {
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 140px);
+  height: calc(100vh - 140px); /* Matches SyntaxAnalysis */
   position: relative;
   width: 100%;
   margin: 0 auto 10px auto;
@@ -28,49 +24,41 @@
 
 .ast-content,
 .ir-content {
-  background-color: var(--card-background);
+  background-color: #222;
   height: 100%;
   width: 100%;
   border-radius: 10px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--border);
 }
 
 .tree-wrapper,
 .ir-wrapper {
-  flex: 1;
+  flex: 1; /* Expand to fill available space */
   overflow-y: auto;
   overflow-x: auto;
   width: 100%;
 }
 
 .ir-wrapper {
-  background-color: var(--card-background);
-  border: 1px solid var(--border);
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 0;
-  padding: 10px;
-}
-
-.ir-code {
-  color: var(--text);
-  white-space: pre-wrap;
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.6;
+  background-color: #000000;
+  border: 1px solid #282828;
+  border-top-left-radius: 10px; /* Top-left corner */
+  border-bottom-left-radius: 10px; /* Bottom-left corner */
+  border-top-right-radius: 0; /* Ensure top-right is square */
+  border-bottom-right-radius: 0; /* Ensure bottom-right is square */
+  padding: 10px; /* Add some padding inside the IR wrapper */
 }
 
 .download-button-wrapper {
-  display: none;
+  margin-top: 10px;
+  padding-bottom: 10px;
 }
 
 .drag-handle {
-  width: 2px;
-  background-color: var(--border);
+  width: 10px;
+  background-color: #444;
   cursor: col-resize;
   position: absolute;
   top: 0;
@@ -81,17 +69,17 @@
 }
 
 .text-warning {
-  color: var(--warning);
+  color: #ff9900;
   text-align: center;
   margin: 10px 0;
 }
 
 /* Arrow Buttons */
 .arrow-button {
-  background-color: var(--primary);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  background-color: #706CEE; /* Blue background matching LexicalAnalysis */
+  border-radius: 50%; /* Circular buttons */
+  width: 48px;
+  height: 48px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -100,23 +88,23 @@
 }
 
 .arrow-button svg {
-  width: 20px;
-  height: 20px;
-  stroke: var(--text);
+  width: 24px;
+  height: 24px;
+  stroke: #fff; /* White arrow */
   transition: stroke 0.3s ease;
 }
 
 .arrow-button:hover {
-  background-color: var(--accent);
+  background-color: #5954ED; /* Darker blue on hover */
   transform: scale(1.1);
 }
 
 .arrow-button:hover svg {
-  stroke: var(--text);
+  stroke: #fff; /* Keep white on hover */
 }
 
 .arrow-button:focus {
-  outline: 2px solid var(--accent);
+  outline: 2px solid #5954ED; /* Focus ring for accessibility */
   outline-offset: 2px;
 }
 
@@ -128,23 +116,22 @@
 
 /* D3 Styles */
 .node circle {
-  fill: var(--card-background);
-  stroke: var(--primary);
+  fill: #fff;
+  stroke: steelblue;
   stroke-width: 3px;
 }
 
 .node text {
   font: 12px sans-serif;
-  fill: var(--text);
 }
 
 .node--internal text {
-  text-shadow: 0 0px 0 0 var(--background), 0 -0px 0 var(--background), 0px 0 0 var(--background), -0px 0 var(--background);
+  text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
 }
 
 .link {
   fill: none;
-  stroke: var(--border);
+  stroke: #ccc;
   stroke-width: 2px;
 }
 
@@ -171,7 +158,7 @@
 
   .tree-wrapper,
   .ir-wrapper {
-    height: 300px;
+    height: 300px; /* Fixed height for mobile */
     width: 100%;
   }
 
@@ -180,7 +167,7 @@
   }
 
   .errors-section {
-    margin-top: 7px;
+    margin-top: 8px;
   }
 
   .arrow-button {

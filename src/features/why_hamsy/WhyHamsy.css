@@ -1,81 +1,9 @@
-/* src/features/why_hamsy/WhyHamsy.css */
-@import "../../features/css/style.css";
-
-.why-hamsy-container {
-  min-height: 100vh;
-  padding: 20px;
-  background: var(--background);
-  color: var(--text);
-}
-
-.why-hamsy-section {
-  margin: 0 15px;
-  padding: 20px 0;
-}
-
-.why-hamsy-intro {
-  max-width: 800px;
-  color: var(--text);
-}
-
-.highlight {
-  color: var(--primary);
-}
-
-.hamsy-letter {
-  font-weight: bold;
-  font-size: 4rem;
-  color: var(--primary);
-  transition: color 0.3s ease;
-}
-
-.hamsy-letter:hover {
-  color: var(--accent);
-}
-
 .member-card {
-  background: var(--card-background);
-  border: 1px solid var(--border);
-  color: var(--code-text);
   transition: transform 0.3s ease;
 }
-
 .member-card:hover {
   transform: translateY(-5px);
 }
-
-.member-card h5 {
-  color: var(--text);
-  margin-bottom: 0.5rem;
-}
-
-.member-card p {
-  color: var(--code-text);
-}
-
-.nextButton {
-  background: var(--primary);
-  color: var(--text);
-  padding: 0.5rem 2rem;
-  border-radius: 25px;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.nextButton:hover {
-  background: var(--accent);
-  transform: scale(1.05);
-}
-
-@media (max-width: 768px) {
-  .why-hamsy-container {
-    padding: 15px;
-  }
-
-  .hamsy-letter {
-    font-size: 3rem;
-  }
-
-  .member-card {
-    padding: 1rem;
-  }
+.hamsy-letter {
+  font-weight: bold;
 }

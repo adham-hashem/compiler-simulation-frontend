@@ -1,13 +1,8 @@
-/* src/features/lexical/LexicalAnalysis.css */
-@import '../css/style.css';
-
 .lexical-container {
   min-height: 100vh;
   padding: 20px;
   width: 100%;
   max-width: 100%;
-  background: var(--background);
-  color: var(--text);
 }
 
 /* Split Container (Desktop) */
@@ -26,20 +21,19 @@
 
 .source-content,
 .tokens-content {
-  background-color: var(--card-background);
+  background-color: #222;
   height: 100%;
   width: 100%;
-  border: 1px solid var(--border);
 }
 
 .source-textarea {
   height: calc(100% - 40px); /* Adjust for h2 height */
   font-family: monospace;
-  background-color: var(--card-background) !important; /* Override Bootstrap */
+  background-color: #282828 !important; /* Match original, override Bootstrap */
   border: none !important; /* Match original */
   resize: none;
   width: 100%;
-  color: var(--text);
+  color: white; /* Ensure text remains visible */
 }
 
 .tokens-table-wrapper {
@@ -49,27 +43,16 @@
 }
 
 .tokens-table {
-  background: var(--card-background);
+  background: #1A1A1A;
   border-radius: 10px;
   border-collapse: separate;
   border-spacing: 0;
   width: 100%;
-  color: var(--text);
-}
-
-.tokens-table th,
-.tokens-table td {
-  border: 1px solid var(--border);
-}
-
-.tokens-table thead tr {
-  background: var(--primary);
-  color: var(--text);
 }
 
 .drag-handle {
   width: 10px;
-  background-color: var(--border);
+  background-color: #444;
   cursor: col-resize;
   position: absolute;
   top: 0;
@@ -80,8 +63,8 @@
 
 /* Arrow Buttons */
 .arrow-button {
-  background-color: var(--primary);
-  border-radius: 20px;
+  background-color: #706CEE; /* Blue background matching theme */
+  border-radius: 50%; /* Circular buttons */
   width: 48px;
   height: 48px;
   display: inline-flex;
@@ -91,19 +74,25 @@
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+.arrow-button svg {
+  width: 24px;
+  height: 24px;
+  stroke: #fff; /* White arrow */
+  transition: stroke 0.3s ease;
+}
+
 .arrow-button:hover {
-  background-color: var(--accent);
+  background-color: #5954ed; /* Darker blue on hover */
   transform: scale(1.1);
 }
 
-.arrow-button:focus {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+.arrow-button:hover svg {
+  stroke: #fff; /* Keep white on hover */
 }
 
-/* Text Warning */
-.text-warning {
-  color: var(--accent);
+.arrow-button:focus {
+  outline: 2px solid #5954ed; /* Focus ring for accessibility */
+  outline-offset: 2px;
 }
 
 /* Mobile Layout (below 768px) */

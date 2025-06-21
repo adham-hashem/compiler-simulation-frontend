@@ -1,49 +1,7 @@
-/* src/features/explore/Explore.css */
-@import "../../../features/css/style.css";
-
-.explore-container {
-  min-height: 100vh;
-  padding: 20px;
-  background: var(--background);
-  color: var(--text);
-}
-
-.explore-intro {
-  max-width: 800px;
-}
-
 .explore-btn {
-  background: var(--primary);
-  color: var(--text);
-  border: none;
-  transition: transform 0.3s ease, background 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
-
 .explore-btn:hover {
   transform: translateY(-5px);
-  background: var(--accent);
-}
-
-.nextButton {
-  background: var(--primary);
-  color: var(--text);
-  padding: 0.5rem 2rem;
-  border-radius: 25px;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.nextButton:hover {
-  background: var(--accent);
-  transform: scale(1.05);
-}
-
-@media (max-width: 768px) {
-  .explore-container {
-    padding: 15px;
-  }
-
-  .explore-btn {
-    font-size: 0.9rem;
-    padding: 0.75rem 1rem;
-  }
+  background-color: #5a54cc !important;
 }

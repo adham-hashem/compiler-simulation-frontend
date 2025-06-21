@@ -1,30 +1,32 @@
-/* src/app/layout/Header.css */
-@import '../../features/css/style.css';
+@import "../../features/css/style.css";
 
 .navbar {
-  background: var(--navbar-bg);
+  background: linear-gradient(135deg, rgba(40, 40, 40, 0.95) 0%, rgba(60, 60, 60, 0.95) 100%);
   backdrop-filter: blur(8px);
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .navbar-brand {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-size: 2rem;
-  color: var(--primary);
+  background: linear-gradient(45deg, #706CEE, #6474ED);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   transition: transform 0.3s ease, text-shadow 0.3s ease;
   position: relative;
 }
 
 .navbar-brand:hover {
   transform: scale(1.05);
-  text-shadow: 0 0 10px rgba(112, 108, 238, 0.6);
+  text-shadow: 0 0 10px rgba(51, 109, 233, 0.603);
 }
 
 .nav-link {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.1rem;
-  color: var(--text) !important;
+  color: #ffffff !important;
   padding: 0.5rem 1.5rem !important;
   position: relative;
   transition: color 0.3s ease, transform 0.3s ease;
@@ -37,7 +39,7 @@
   height: 2px;
   bottom: 0;
   left: 50%;
-  background: var(--primary);
+  background: linear-gradient(45deg, #706CEE, #00b7eb);
   transition: width 0.3s ease, left 0.3s ease;
 }
 
@@ -47,17 +49,22 @@
 }
 
 .nav-link:hover {
-  color: var(--accent) !important;
+  color: #00b7eb !important;
   transform: translateY(-2px);
 }
 
+.contact-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .contact-us-button {
-  background: var(--primary);
-  color: var(--text);
+  background: linear-gradient(45deg, #706CEE 0%, #4b47e6 100%);
+  color: #ffffff;
   padding: 0.7rem 2rem;
   border-radius: 50px;
   border: none;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 1rem;
   text-transform: uppercase;
@@ -69,9 +76,9 @@
 }
 
 .contact-us-button:hover {
-  background: var(--accent);
+  background: linear-gradient(45deg, #00b7eb 0%, #706CEE 100%);
   transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(112, 108, 238, 0.6);
+  box-shadow: 0 6px 20px rgba(0, 183, 235, 0.6);
 }
 
 .contact-us-button i {
@@ -82,43 +89,12 @@
   transform: scale(1.2);
 }
 
-.theme-toggle-button {
-  background: transparent;
-  color: var(--text);
-  border: 1px solid var(--border);
-  padding: 0.5rem;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Poppins', sans-serif;
-  font-size: 1rem; /* Smaller icon */
-  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.theme-toggle-button:hover {
-  background: var(--accent);
-  color: var(--text);
-  transform: scale(1.1);
-  box-shadow: 0 4px 10px rgba(112, 108, 238, 0.4);
-}
-
-.theme-toggle-button i {
-  transition: transform 0.3s ease;
-}
-
-.theme-toggle-button:hover i {
-  transform: rotate(15deg);
-}
-
 .navbar-toggler {
-  border-color: var(--primary) !important;
+  border-color: #706CEE !important;
 }
 
 .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23007bff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23706CEE' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 @media (max-width: 768px) {
@@ -131,19 +107,15 @@
     margin-bottom: 1rem;
   }
 
+  .contact-button-container {
+    justify-content: center;
+  }
+
   .contact-us-button {
     padding: 0.6rem 1.5rem;
     font-size: 0.95rem;
     margin: 0.5rem auto;
     display: inline-flex;
-  }
-
-  .theme-toggle-button {
-    padding: 0.4rem;
-    width: 28px;
-    height: 28px;
-    font-size: 0.9rem; /* Smaller icon */
-    margin: 0.5rem auto;
   }
 
   .nav-link {
@@ -160,13 +132,6 @@
   .contact-us-button {
     padding: 0.5rem 1.2rem;
     font-size: 0.9rem;
-  }
-
-  .theme-toggle-button {
-    padding: 0.3rem;
-    width: 24px;
-    height: 24px;
-    font-size: 0.8rem; /* Smaller icon */
   }
 
   .navbar-brand {

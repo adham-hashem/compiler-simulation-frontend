@@ -1,17 +1,19 @@
 import React from "react";
-import { useTheme } from "../../features/context/ThemeContext";
-import "./Errors.css";
 
 interface ErrorsProps {
-  errors: string[];
+    errors: string[];
 }
 
 const Errors: React.FC<ErrorsProps> = ({ errors }) => {
-  const { theme } = useTheme();
-
   return (
-    <div className={`rounded-div errors-container ${theme}`}>
-      <h2 className="mb-3">Errors</h2>
+    <div
+      className="p-3 rounded-div mb-3"
+      style={{
+        backgroundColor: "#282828",
+        overflowX: "auto"
+      }}
+    >
+      <h2 className="mb-3 text-white">Errors</h2>
       {errors.length > 0 ? (
         <ul className="list-group">
           {errors.map((error, index) => (
@@ -21,7 +23,7 @@ const Errors: React.FC<ErrorsProps> = ({ errors }) => {
           ))}
         </ul>
       ) : (
-        <p className="no-errors">No errors found</p>
+        <p style={{ color: "var(--main-color)" }}>No errors found</p>
       )}
     </div>
   );

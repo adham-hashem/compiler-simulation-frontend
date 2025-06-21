@@ -1,14 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import { Link } from "react-router-dom";
-import "../css/style.css";
+import "../../features/css/style.css";
 import "./IntermediateCodeGeneration.css";
 import Header from "../../app/layout/Header";
 import Footer from "../../app/layout/Footer";
 import Errors from "../errors/Errors";
 import Notes from "../notes/Notes";
 import { useCompilation } from "../context/CompilationContext";
-import { useTheme } from "../context/ThemeContext";
 import ScrollButtons from "../scrollButtons/ScrollButtons";
 import { API_BASE_URL } from '../../config';
 
@@ -28,7 +27,6 @@ interface D3TreeNode {
 
 const IntermediateCodeGeneration: React.FC = () => {
   const { code, tokens, abstractSyntaxTree, setAbstractSyntaxTree, intermediateCode, setIntermediateCode } = useCompilation();
-  const { theme } = useTheme();
   const abstractSyntaxTreeSvgRef = useRef<SVGSVGElement | null>(null);
   const [errors, setErrors] = useState<string[]>([]);
   const [notes, setNotes] = useState<string[]>([
@@ -110,7 +108,7 @@ const IntermediateCodeGeneration: React.FC = () => {
     const margin = { top: 50, right: 50, bottom: 50, left: 50 };
     d3.select(svgRef.current).selectAll("*").remove();
 
-    const svg = d3.select(svgRef.current).style("background", "var(--card-background)");
+    const svg = d3.select(svgRef.current).style("background", "black");
     const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
 
     const d3TreeData = transformToD3TreeNode(treeData);
@@ -149,7 +147,7 @@ const IntermediateCodeGeneration: React.FC = () => {
                 ${parentX},${parentY}`;
       })
       .attr("fill", "none")
-      .attr("stroke", "var(--text)")
+      .attr("stroke", "white")
       .attr("stroke-width", 2);
 
     const node = g
@@ -163,8 +161,8 @@ const IntermediateCodeGeneration: React.FC = () => {
     node
       .append("circle")
       .attr("r", 12)
-      .attr("fill", "var(--card-background)")
-      .attr("stroke", "var(--text)")
+      .attr("fill", "#222")
+      .attr("stroke", "white")
       .attr("stroke-width", 2);
 
     node
@@ -172,7 +170,7 @@ const IntermediateCodeGeneration: React.FC = () => {
       .attr("dy", ".35em")
       .attr("y", (d) => (d.children ? -20 : 20))
       .style("text-anchor", "middle")
-      .style("fill", "var(--text)")
+      .style("fill", "white")
       .style("font-size", "14px")
       .text((d) => d.data.name);
   };
@@ -225,14 +223,14 @@ const IntermediateCodeGeneration: React.FC = () => {
   return (
     <>
       <Header />
-      <div ref={containerRef} className={`container-fluid main-background-color ir-container ${theme}`}>
-        <h2 className="mb-3 text-center">Intermediate Code Generation</h2>
+      <div ref={containerRef} className="container-fluid text-white main-background-color ir-container">
+        <h2 className="mb-3 text-white text-center">Intermediate Code Generation</h2>
 
         <div className="split-container">
           {/* Abstract Syntax Tree Section */}
           <div className="ast-section" style={{ width: `calc(${astWidth}% - 5px)` }}>
             <div className="p-3 rounded-div ast-content">
-              <h3>Abstract Syntax Tree</h3>
+              <h3 className="text-white">Abstract Syntax Tree</h3>
               {abstractSyntaxTree ? (
                 <div className="tree-wrapper">
                   <svg ref={abstractSyntaxTreeSvgRef}></svg>
@@ -243,7 +241,7 @@ const IntermediateCodeGeneration: React.FC = () => {
               <div className="text-center mt-2 download-button-wrapper">
                 <button
                   onClick={() => downloadSVG(abstractSyntaxTreeSvgRef, "abstract_syntax_tree.svg")}
-                  className="btn btn-sm btn-primary"
+                  className="btn btn-sm btn-outline-light"
                   disabled={!abstractSyntaxTree}
                 >
                   Download SVG
@@ -263,12 +261,14 @@ const IntermediateCodeGeneration: React.FC = () => {
           {/* Intermediate Code Section */}
           <div className="ir-section" style={{ width: `calc(${100 - astWidth}% - 5px)` }}>
             <div className="p-3 rounded-div ir-content">
-              <h3>Intermediate Code</h3>
+              <h3 className="text-white">Intermediate Code</h3>
               <div className="ir-wrapper">
                 {loading ? (
                   <p className="text-warning">Fetching intermediate code...</p>
                 ) : intermediateCode ? (
-                  <pre className="ir-code">{intermediateCode}</pre>
+                  <pre className="text-white" style={{ whiteSpace: "pre-wrap" }}>
+                    {intermediateCode}
+                  </pre>
                 ) : (
                   <p className="text-warning">No intermediate code available</p>
                 )}
@@ -298,7 +298,7 @@ const IntermediateCodeGeneration: React.FC = () => {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="var(--text)"
+                stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -324,7 +324,7 @@ const IntermediateCodeGeneration: React.FC = () => {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="var(--text)"
+                stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -335,9 +335,9 @@ const IntermediateCodeGeneration: React.FC = () => {
           </div>
         </div>
 
-        <div className="errors-section">
+        {/* <div className="errors-section">
           <Errors errors={errors} />
-        </div>
+        </div> */}
 
         <Notes notes={notes} />
 

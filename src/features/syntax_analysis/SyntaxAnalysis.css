@@ -1,6 +1,3 @@
-/* src/features/syntax/SyntaxAnalysis.css */
-@import '../css/style.css';
-
 .syntax-container {
   min-height: 100vh;
   padding: 20px;
@@ -8,8 +5,6 @@
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  background: var(--background);
-  color: var(--text);
 }
 
 /* Split Container (Desktop) */
@@ -29,14 +24,13 @@
 
 .tokens-content,
 .tree-content {
-  background-color: var(--card-background);
+  background-color: #222;
   height: 100%;
   width: 100%;
   border-radius: 10px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--border);
 }
 
 .tokens-table-wrapper {
@@ -46,22 +40,16 @@
 }
 
 .tokens-table {
-  background: var(--card-background);
+  background: #1A1A1A;
   border-radius: 10px;
   border-collapse: separate;
   border-spacing: 0;
   width: 100%;
-  color: var(--text);
 }
 
 .tokens-table td,
 .tokens-table th {
-  border: 1px solid var(--border);
-}
-
-.tokens-table thead tr {
-  background: var(--primary);
-  color: var(--text);
+  border: 1px solid #444;
 }
 
 .tree-wrapper {
@@ -85,7 +73,7 @@
 
 .drag-handle {
   width: 10px;
-  background-color: var(--border);
+  background-color: #444;
   cursor: col-resize;
   position: absolute;
   top: 0;
@@ -96,14 +84,14 @@
 }
 
 .text-warning {
-  color: var(--accent);
+  color: #ff9900;
   text-align: center;
   margin: 10px 0;
 }
 
 /* Arrow Buttons */
 .arrow-button {
-  background-color: var(--primary);
+  background-color: #706CEE;
   border-radius: 50%;
   width: 48px;
   height: 48px;
@@ -114,13 +102,24 @@
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+.arrow-button svg {
+  width: 24px;
+  height: 24px;
+  stroke: #fff;
+  transition: stroke 0.3s ease;
+}
+
 .arrow-button:hover {
-  background-color: var(--accent);
+  background-color: #5954ED;
   transform: scale(1.1);
 }
 
+.arrow-button:hover svg {
+  stroke: #fff;
+}
+
 .arrow-button:focus {
-  outline: 2px solid var(--accent);
+  outline: 2px solid #5954ED;
   outline-offset: 2px;
 }
 
@@ -132,23 +131,22 @@
 
 /* D3 Styles */
 .node circle {
-  fill: var(--card-background);
-  stroke: var(--text);
+  fill: #fff;
+  stroke: steelblue;
   stroke-width: 3px;
 }
 
 .node text {
   font: 12px sans-serif;
-  fill: var(--text);
 }
 
 .node--internal text {
-  text-shadow: 0 1px 0 var(--background), 0 -1px 0 var(--background), 1px 0 0 var(--background), -1px 0 0 var(--background);
+  text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
 }
 
 .link {
   fill: none;
-  stroke: var(--text);
+  stroke: #ccc;
   stroke-width: 2px;
 }
 

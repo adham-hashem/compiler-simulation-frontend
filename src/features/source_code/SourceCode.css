@@ -1,4 +1,3 @@
-/* src/features/source_code/SourceCode.css */
 @import "../css/style.css";
 
 .source-code-container {
@@ -8,20 +7,18 @@
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
-  background: var(--background);
-  color: var(--text);
+  overflow-x: hidden; /* No horizontal scroll at container level */
 }
 
 /* Split Container (Desktop) */
 .split-container {
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 235px) !important;
+  height: calc(100vh - 230px) !important;
   position: relative;
   width: 100%;
   margin: 0 auto 10px auto;
-  overflow-x: hidden;
+  overflow-x: hidden; /* No horizontal scroll here */
 }
 
 .code-section,
@@ -30,54 +27,57 @@
 }
 
 .code-content,
-.grammar {
-  background-color: var(--card-background);
+.grammar-content {
+  background-color: #222;
   height: 100%;
   width: 100%;
   border-radius: 10px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--border);
 }
 
 .code-wrapper {
   flex: 1;
   overflow-y: auto;
-  overflow-x: auto;
+  overflow-x: auto; /* Allow horizontal scroll for code */
   width: 100%;
-  background-color: var(--card-background);
-  border: 1px solid var(--border);
+  background-color: #282828;
+  border: 1px solid #282828;
   padding: 10px;
   border-radius: 10px;
   resize: none;
-  color: var(--text);
+  color: #fff;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .code-wrapper:focus {
-  border: 1px solid var(--primary);
+  background-color: #282828;
+  color: #fff;
+  border: 1px solid #444;
   outline: none;
-  box-shadow: 0 0 5px var(--primary-shadow);
+  box-shadow: 0 0 5px rgba(112, 108, 238, 0.5);
 }
 
-.code-wrapper.loading {
-  border: 2px dashed var(--primary);
-  box-shadow: 0 0 10px var(--primary-shadow);
-  background-color: var(--card-background-hover);
+.code-wrapper.dragging {
+  border: 2px dashed #706CEE;
+  box-shadow: 0 0 10px rgba(112, 108, 238, 0.7);
+  background-color: #333;
 }
 
 .grammar-wrapper {
   flex: 1;
-  overflow-y: auto;
-  overflow-x: auto;
+  overflow-y: auto; /* Vertical scroll */
+  overflow-x: auto; /* Horizontal scroll for grammar */
   width: 100%;
-  background-color: var(--card-background);
-  border: 1px solid var(--border);
+  background-color: #000000;
+  border: 1px solid #282828;
   padding: 10px;
-  border-radius: 10px;
-  white-space: pre;
-  color: var(--text);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  white-space: pre; /* Prevent wrapping */
 }
 
 .upload-section {
@@ -94,39 +94,39 @@
 }
 
 .upload-icon:hover {
-  background-color: var(--primary-shadow);
-  box-shadow: 0 0 12px var(--primary-shadow);
-  animation: none;
+  background-color: rgba(112, 108, 238, 0.3);
+  box-shadow: 0 0 12px rgba(112, 108, 238, 0.7);
+  animation: none; /* Stop pulse on hover */
 }
 
 .upload-icon svg {
-  stroke: var(--text);
+  stroke: #fff;
   width: 24px;
   height: 24px;
 }
 
 .upload-icon:hover svg {
-  stroke: var(--accent);
+  stroke: #8a86f5; /* Lighter purple */
 }
 
 @keyframes pulse {
   0% {
     transform: scale(1);
-    box-shadow: 0 0 0 var(--primary-shadow);
+    box-shadow: 0 0 0 rgba(112, 108, 238, 0.5);
   }
   50% {
     transform: scale(1.05);
-    box-shadow: 0 0 15px var(--primary-shadow);
+    box-shadow: 0 0 15px rgba(112, 108, 238, 0.7);
   }
   100% {
     transform: scale(1);
-    box-shadow: 0 0 0 var(--primary-shadow);
+    box-shadow: 0 0 0 rgba(112, 108, 238, 0.5);
   }
 }
 
 .drag-handle {
   width: 10px;
-  background-color: var(--border);
+  background-color: #444;
   cursor: col-resize;
   position: absolute;
   top: 0;
@@ -137,11 +137,7 @@
 }
 
 .text-danger {
-  color: var(--error);
-}
-
-.text-success {
-  color: var(--success);
+  color: #ff4444;
 }
 
 /* Button Container */
@@ -155,7 +151,7 @@
 }
 
 /* Button Styles */
-.btn {
+.btn-source-code {
   display: inline-block;
   padding: 12px 16px;
   font-size: 1rem;
@@ -165,28 +161,54 @@
   border-radius: 8px;
   transition: all 0.3s ease;
   cursor: pointer;
-  min-height: 48px;
-  text-align: center;
-  width: 190px;
-}
-
-.btn-primary {
-  background: var(--primary);
-  color: var(--text);
+  min-height: 48px; /* WCAG touch target size */
   border: none;
-  box-shadow: 0 4px 15px var(--primary-shadow);
+  text-align: center;
+  width: 140px; /* Fixed width for all buttons on desktop */
 }
 
-.btn-primary:hover {
-  background: var(--accent);
+/* Outline Button (btn-outline-light, e.g., btn1, btn2, btn3) */
+.btn.btn-outline-light {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+.btn.btn-outline-light:hover {
+  background: linear-gradient(45deg, #706cee, #4a47e0);
+  border-color: transparent;
+  color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--primary-shadow);
+  box-shadow: 0 6px 20px rgba(112, 108, 238, 0.6);
 }
 
-.btn-primary:focus {
-  outline: 3px solid var(--accent);
+/* Custom Buttons (btn1, btn2, btn3) */
+.btn1, .btn2, .btn3 {
+  background: linear-gradient(45deg, #706cee, #4a47e0);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(112, 108, 238, 0.4);
+  width: 190px; /* Consistent width on desktop */
+}
+
+.btn1:hover, .btn2:hover, .btn3:hover {
+  background: linear-gradient(45deg, #8a86f5, #6562e8);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(112, 108, 238, 0.6);
+  color: #fff;
+}
+
+/* Upload Button Specific */
+.upload-btn {
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  min-width: 120px;
+}
+
+/* Focus States for Accessibility */
+.btn:focus {
+  outline: 3px solid #8a86f5;
   outline-offset: 2px;
-  box-shadow: 0 0 10px var(--primary-shadow);
+  box-shadow: 0 0 10px rgba(112, 108, 238, 0.7);
 }
 
 /* Mobile Layout (below 768px) */
@@ -206,7 +228,7 @@
   }
 
   .code-content,
-  .grammar {
+  .grammar-content {
     width: 100%;
     height: auto;
     min-height: 450px;
@@ -225,6 +247,7 @@
     display: none;
   }
 
+  /* Button Container for Mobile */
   .button-container {
     flex-direction: column;
     justify-content: center;
@@ -234,10 +257,24 @@
     padding: 0 10px;
   }
 
+  /* Button Styles for Mobile */
   .btn {
-    width: 90%;
-    max-width: 250px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    width: 90%; /* Consistent width on mobile, responsive */
+    max-width: 250px; /* Prevent buttons from becoming too wide */
     margin: 5px 0;
+  }
+
+  .btn1, .btn2, .btn3 {
+    width: 90%; /* Ensure consistent width */
+    max-width: 250px;
+  }
+
+  .upload-btn {
+    max-width: 180px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
   }
 
   .upload-icon {
@@ -259,16 +296,18 @@
     max-width: 220px;
   }
 
+  .btn1, .btn2, .btn3 {
+    width: 90%;
+    max-width: 220px;
+  }
+
+  .upload-btn {
+    max-width: 160px;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+
   .button-container {
     gap: 8px;
-  }
-
-  .upload-icon {
-    padding: 8px;
-  }
-
-  .upload-icon svg {
-    width: 18px;
-    height: 18px;
   }
 }

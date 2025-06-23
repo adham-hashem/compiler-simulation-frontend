@@ -146,15 +146,15 @@ const ContactPage = () => {
           <ul className="list-unstyled ms-4">
             <li className="mb-2">
               <i className="fas fa-envelope mr-2" style={{ color: "#706CEE" }}></i>
-              <strong>Email:</strong> support@hamsycompiler.com
+              <strong>Email:</strong> adhamhashem2025@gmail.com
             </li>
             <li className="mb-2">
               <i className="fas fa-phone mr-2" style={{ color: "#706CEE" }}></i>
-              <strong>Phone:</strong> +123-456-7890
+              <strong>Phone:</strong> +201028110927
             </li>
             <li className="mb-2">
               <i className="fas fa-map-marker-alt mr-2" style={{ color: "#706CEE" }}></i>
-              <strong>Address:</strong> 123 Main Street, City, Country
+              <strong>Address:</strong> New Damietta, Damietta, Egypt
             </li>
           </ul>
         </section>

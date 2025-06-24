@@ -45,6 +45,7 @@ import SymbolTablesExplaination from "../../features/explainations/symbol_tables
 import Explore from "../../features/explainations/explore/Explore";
 import OCRExplaination from "../../features/explainations/ocr_explaination/OCRExplaination";
 import CpuMemoryVisualization from "../../features/visualization/cpu_memory_visualization/CpuMemoryVisualization";
+import LanguageReference from "../../features/language_reference/LanguageReference";
 
 export const router = createBrowserRouter([
     {
@@ -58,6 +59,7 @@ export const router = createBrowserRouter([
             { path: 'why-hamsy', element: <WhyHamsy /> },
             { path: 'what-is-compiler', element: <CompilerInfo />},
             { path: 'explore', element: <Explore />},
+            { path: 'language', element: <LanguageReference />},
             { path: 'compiler-working-explaination', element: <CompilerWorking />},
             { path: 'lexical-analysis-explaination', element: <LexicalAnalysisExplaination />},
             { path: 'syntax-analysis-explaination', element: <SyntaxAnalysisExplaination />},

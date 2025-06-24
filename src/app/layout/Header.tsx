@@ -91,16 +91,21 @@ function Header() {
                 Home
               </Link>
             </li>
+            {/* <li className="nav-item" ref={addToNavItemsRef}>
+              <Link className="nav-link" to="/services">
+              Services
+              </Link>
+              </li> */}
             <li className="nav-item" ref={addToNavItemsRef}>
               <Link className="nav-link" to="/about">
                 About
               </Link>
             </li>
-            {/* <li className="nav-item" ref={addToNavItemsRef}>
-              <Link className="nav-link" to="/services">
-                Services
+            <li className="nav-item" ref={addToNavItemsRef}>
+              <Link className="nav-link" to="/language">
+                Language
               </Link>
-            </li> */}
+            </li>
             <li className="nav-item" ref={addToNavItemsRef}>
               <Link className="nav-link" to="/explore">
                 Explore

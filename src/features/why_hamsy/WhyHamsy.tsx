@@ -34,7 +34,7 @@ const WhyHamsy: React.FC = () => {
     {
       letter: "M",
       members: [
-        { name: "Mariam Nashaat Badran Eid", role: "CS Student, Backend Developer", description: "Developed robust backend systems for code optimization and visualization." },
+        { name: "Mariam Nashaat Badran Eid", role: "CS Student, Backend Developer", description: "Engineered backend logic for efficient compilation and AI integration." },
       ],
     },
     {
